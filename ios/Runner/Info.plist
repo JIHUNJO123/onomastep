@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
@@ -54,5 +54,8 @@
 <string>cstr6suwn9.skadnetwork</string>
 </dict>
 </array>
+<key>NSUserTrackingUsageDescription</key>
+<string>This app uses tracking to provide personalized ads. Your data will be used to deliver ads that are more relevant to you.</string>
 </dict>
 </plist>
+
