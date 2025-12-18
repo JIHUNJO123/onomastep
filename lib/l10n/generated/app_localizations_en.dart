@@ -9,7 +9,7 @@ class AppLocalizationsEn extends AppLocalizations {
   AppLocalizationsEn([String locale = 'en']) : super(locale);
 
   @override
-  String get appTitle => 'GRE Vocabulary Master';
+  String get appTitle => 'SAT Vocabulary Master';
 
   @override
   String get todayWord => 'Today\'s Word';
@@ -111,7 +111,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get disclaimer => 'Disclaimer';
 
   @override
-  String get disclaimerText => 'This app is an independent GRE preparation tool and is not affiliated with, endorsed by, or approved by ETS (Educational Testing Service).';
+  String get disclaimerText => 'This app is an independent SAT preparation tool and is not affiliated with, endorsed by, or approved by ETS (Educational Testing Service).';
 
   @override
   String get privacyPolicy => 'Privacy Policy';
@@ -161,7 +161,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get advanced => 'Advanced';
 
   @override
-  String get advancedDesc => 'High-frequency GRE - 800 words';
+  String get advancedDesc => 'High-frequency SAT - 800 words';
 
   @override
   String get expert => 'Expert';

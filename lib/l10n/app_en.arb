@@ -1,6 +1,6 @@
-{
+﻿{
   "@@locale": "en",
-  "appTitle": "GRE Vocabulary Master",
+  "appTitle": "SAT Vocabulary Master",
   "todayWord": "Today's Word",
   "learning": "Learning",
   "levelLearning": "Difficulty Level",
@@ -34,7 +34,7 @@
   "info": "Info",
   "version": "Version",
   "disclaimer": "Disclaimer",
-  "disclaimerText": "This app is an independent GRE preparation tool and is not affiliated with, endorsed by, or approved by ETS (Educational Testing Service).",
+  "disclaimerText": "This app is an independent SAT preparation tool and is not affiliated with, endorsed by, or approved by ETS (Educational Testing Service).",
   "privacyPolicy": "Privacy Policy",
   "cannotLoadWords": "Cannot load words",
   "noFavoritesYet": "No favorites yet",
@@ -57,7 +57,7 @@
   "common": "Common",
   "commonDesc": "Frequently tested - 1,000 words",
   "advanced": "Advanced",
-  "advancedDesc": "High-frequency GRE - 800 words",
+  "advancedDesc": "High-frequency SAT - 800 words",
   "expert": "Expert",
   "expertDesc": "Challenging vocabulary - 500 words",
   "alphabetical": "Alphabetical",
@@ -87,3 +87,6 @@
   "restoreComplete": "Restore complete",
   "noPurchaseFound": "No previous purchase found"
 }
+
+
+

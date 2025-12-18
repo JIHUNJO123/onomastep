@@ -48,12 +48,12 @@ import 'app_localizations_zh.dart';
 ///
 /// iOS applications define key application metadata, including supported
 /// locales, in an Info.plist file that is built into the application bundle.
-/// To configure the locales supported by your app, you?™ll need to edit this
+/// To configure the locales supported by your app, youâ€™ll need to edit this
 /// file.
 ///
-/// First, open your project?™s ios/Runner.xcworkspace Xcode workspace file.
+/// First, open your projectâ€™s ios/Runner.xcworkspace Xcode workspace file.
 /// Then, in the Project Navigator, open the Info.plist file under the Runner
-/// project?™s Runner folder.
+/// projectâ€™s Runner folder.
 ///
 /// Next, select the Information Property List item, select Add Item from the
 /// Editor menu, then select Localizations from the pop-up menu.
@@ -102,7 +102,7 @@ abstract class AppLocalizations {
   /// No description provided for @appTitle.
   ///
   /// In en, this message translates to:
-  /// **'GRE Vocabulary Master'**
+  /// **'SAT Vocabulary Master'**
   String get appTitle;
 
   /// No description provided for @todayWord.
@@ -306,7 +306,7 @@ abstract class AppLocalizations {
   /// No description provided for @disclaimerText.
   ///
   /// In en, this message translates to:
-  /// **'This app is an independent GRE preparation tool and is not affiliated with, endorsed by, or approved by ETS (Educational Testing Service).'**
+  /// **'This app is an independent SAT preparation tool and is not affiliated with, endorsed by, or approved by ETS (Educational Testing Service).'**
   String get disclaimerText;
 
   /// No description provided for @privacyPolicy.
@@ -402,7 +402,7 @@ abstract class AppLocalizations {
   /// No description provided for @advancedDesc.
   ///
   /// In en, this message translates to:
-  /// **'High-frequency GRE - 800 words'**
+  /// **'High-frequency SAT - 800 words'**
   String get advancedDesc;
 
   /// No description provided for @expert.
