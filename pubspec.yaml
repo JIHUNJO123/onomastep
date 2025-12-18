@@ -2,7 +2,7 @@
 description: "SAT Vocabulary - Master GRE words for your graduate school admission"
 publish_to: 'none'
 
-version: 1.0.1+5
+version: 1.0.1+6
 
 environment:
   sdk: ^3.7.0
@@ -61,6 +61,7 @@ flutter:
 
   assets:
     - assets/data/words.json
+
 
 
 
