@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+﻿import 'package:flutter/material.dart';
 import 'package:sat_vocab_app/l10n/generated/app_localizations.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import '../db/database_helper.dart';
@@ -67,7 +67,7 @@ class _HomeScreenState extends State<HomeScreen> {
         await translationService.init();
 
         if (translationService.needsTranslation) {
-          // ?�장 번역�??�용 (API ?�출 ?�음)
+          // ?댁옣 踰덉뿭留??ъ슜 (API ?몄텧 ?놁쓬)
           final embeddedTranslation = word.getEmbeddedTranslation(
             translationService.currentLanguage,
             'definition',
@@ -177,7 +177,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
           ),
-          // 배너 광고
+          // 諛곕꼫 愿묎퀬
           _buildBannerAd(),
         ],
       ),
@@ -265,7 +265,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       borderRadius: BorderRadius.circular(20),
                     ),
                     child: Text(
-                      "?�� ${l10n.todayWord}",
+                      "\u{1F4C5} ${l10n.todayWord}",
                       style: const TextStyle(
                         color: Colors.white,
                         fontWeight: FontWeight.bold,
@@ -440,7 +440,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget _buildLevelCards() {
     final l10n = AppLocalizations.of(context)!;
 
-    // SAT Level 기�? ?�벨 (??체계)
+    // SAT Level 湲곗? ?덈꺼 (??泥닿퀎)
     final levels = [
       {
         'level': 'Basic',
@@ -548,3 +548,5 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 }
+
+
