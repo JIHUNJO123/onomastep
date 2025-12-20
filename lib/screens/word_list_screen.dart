@@ -319,6 +319,12 @@ class _WordListScreenState extends State<WordListScreen> {
     AdService.instance.disposeBannerAd();
     if (widget.isFlashcardMode) {
       _savePosition(_currentFlashcardIndex);
+    } else {
+      // 리스트 모드에서 스크롤 위치 저장
+      if (_listScrollController.hasClients) {
+        final itemIndex = (_listScrollController.offset / 80.0).round();
+        _savePosition(itemIndex);
+      }
     }
     super.dispose();
   }
@@ -496,83 +502,83 @@ class _WordListScreenState extends State<WordListScreen> {
         padding: const EdgeInsets.all(16),
         itemCount: _words.length,
         itemBuilder: (context, index) {
-        final word = _words[index];
-        _loadTranslationForWord(word);
+          final word = _words[index];
+          _loadTranslationForWord(word);
 
-        final definition =
-            _showNativeLanguage && _translatedDefinitions.containsKey(word.id)
-                ? _translatedDefinitions[word.id]!
-                : word.definition;
+          final definition =
+              _showNativeLanguage && _translatedDefinitions.containsKey(word.id)
+                  ? _translatedDefinitions[word.id]!
+                  : word.definition;
 
-        return Card(
-          margin: const EdgeInsets.only(bottom: 12),
-          child: ListTile(
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => WordDetailScreen(word: word),
-                ),
-              );
-            },
-            title: Row(
-              children: [
-                Expanded(
-                  child: Text(
-                    word.getDisplayWord(
-                      displayMode: DisplayService.instance.displayMode,
-                    ),
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 16 * _wordFontSize,
-                    ),
+          return Card(
+            margin: const EdgeInsets.only(bottom: 12),
+            child: ListTile(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => WordDetailScreen(word: word),
                   ),
-                ),
-                // Band 諛곗?: All Words?먯꽌 ?좉? 媛??
-                if (widget.level == null && _showBandBadge)
-                  Container(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 8,
-                      vertical: 2,
-                    ),
-                    decoration: BoxDecoration(
-                      color: _getLevelColor(word.level),
-                      borderRadius: BorderRadius.circular(10),
-                    ),
+                );
+              },
+              title: Row(
+                children: [
+                  Expanded(
                     child: Text(
-                      word.level,
-                      style: const TextStyle(
-                        color: Colors.white,
-                        fontSize: 10,
+                      word.getDisplayWord(
+                        displayMode: DisplayService.instance.displayMode,
+                      ),
+                      style: TextStyle(
                         fontWeight: FontWeight.bold,
+                        fontSize: 16 * _wordFontSize,
                       ),
                     ),
                   ),
-              ],
-            ),
-            subtitle: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const SizedBox(height: 4),
-
-                Text(
-                  definition,
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
-                  style: TextStyle(fontSize: 14 * _wordFontSize),
-                ),
-              ],
-            ),
-            trailing: IconButton(
-              icon: Icon(
-                word.isFavorite ? Icons.favorite : Icons.favorite_border,
-                color: word.isFavorite ? Colors.red : null,
+                  // Band 諛곗?: All Words?먯꽌 ?좉? 媛??
+                  if (widget.level == null && _showBandBadge)
+                    Container(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 8,
+                        vertical: 2,
+                      ),
+                      decoration: BoxDecoration(
+                        color: _getLevelColor(word.level),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: Text(
+                        word.level,
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 10,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                ],
               ),
-              onPressed: () => _toggleFavorite(word),
+              subtitle: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const SizedBox(height: 4),
+
+                  Text(
+                    definition,
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(fontSize: 14 * _wordFontSize),
+                  ),
+                ],
+              ),
+              trailing: IconButton(
+                icon: Icon(
+                  word.isFavorite ? Icons.favorite : Icons.favorite_border,
+                  color: word.isFavorite ? Colors.red : null,
+                ),
+                onPressed: () => _toggleFavorite(word),
+              ),
             ),
-          ),
-        );
-      },
+          );
+        },
       ),
     );
   }
