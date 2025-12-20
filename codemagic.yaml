@@ -8,7 +8,7 @@ workflows:
     environment:
       ios_signing:
         distribution_type: app_store
-        bundle_identifier: com.jhuni.jlptstepn5n3
+        bundle_identifier: com.jlptstep.n5n3
       vars:
         APP_ID: 6740526152
       flutter: stable
