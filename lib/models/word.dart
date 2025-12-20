@@ -7,8 +7,7 @@ class Word {
   final String word; // 전체 단어 (한자+히라가나 혼합)
   final String? kanji; // 한자 부분
   final String? hiragana; // 히라가나 읽기
-  final String
-  level; // JLPT 레벨: N5, N4, N3, N2, N1
+  final String level; // JLPT 레벨: N5, N4, N3, N2, N1
   final String partOfSpeech;
   final String definition; // ?�어 ?�의
   final String example; // ?�어 ?�문
@@ -114,8 +113,9 @@ class Word {
     return Word(
       id: json['id'],
       word: json['word'],
-      kanji: json['kanji'] ?? json['word'],  // N5-N3: word를 kanji로 사용
-      hiragana: json['hiragana'] ?? json['reading'],  // N5-N3: reading을 hiragana로 사용
+      kanji: json['kanji'] ?? json['word'], // N5-N3: word를 kanji로 사용
+      hiragana:
+          json['hiragana'] ?? json['reading'], // N5-N3: reading을 hiragana로 사용
       level: json['level'],
       partOfSpeech: json['partOfSpeech'],
       definition: json['definition'],
@@ -201,9 +201,12 @@ class Word {
   /// [displayMode]: 'parentheses' (괄호 병기) 또는 'furigana' (후리가나)
   String getDisplayWord({String displayMode = 'parentheses'}) {
     // 한자와 히라가나가 다를 때만 괄호 표시 (あそこ(あそこ) 중복 방지)
-    if (kanji != null && hiragana != null && 
-        kanji!.isNotEmpty && hiragana!.isNotEmpty && 
-        kanji != hiragana && word != hiragana) {
+    if (kanji != null &&
+        hiragana != null &&
+        kanji!.isNotEmpty &&
+        hiragana!.isNotEmpty &&
+        kanji != hiragana &&
+        word != hiragana) {
       if (displayMode == 'furigana') {
         // 후리가나 방식: 食べ物 [たべもの]
         return '$kanji [$hiragana]';

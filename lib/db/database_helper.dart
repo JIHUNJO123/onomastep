@@ -22,7 +22,7 @@ class DatabaseHelper {
 
     return await openDatabase(
       path,
-      version: 6, // Bluskyo/Tanos 데이터로 업데이트
+      version: 7, // korean/chinese 번역 필드 지원
       onCreate: _createDB,
       onUpgrade: _upgradeDB,
     );
@@ -89,9 +89,32 @@ class DatabaseHelper {
 
           for (var wordJson in data) {
             // translations를 JSON 문자열로 저장
-            String? translationsJson;
+            Map<String, dynamic>? translationsMap;
+            
+            // 형식 1: translations 객체가 있는 경우
             if (wordJson['translations'] != null) {
-              translationsJson = json.encode(wordJson['translations']);
+              translationsMap = Map<String, dynamic>.from(wordJson['translations']);
+            }
+            
+            // 형식 2: korean, chinese 필드가 있는 경우 (N5-N3 데이터)
+            if (wordJson['korean'] != null && wordJson['korean'].toString().isNotEmpty) {
+              translationsMap ??= {};
+              translationsMap['ko'] = {
+                'definition': wordJson['korean'].toString(),
+                'example': wordJson['example_ko']?.toString() ?? '',
+              };
+            }
+            if (wordJson['chinese'] != null && wordJson['chinese'].toString().isNotEmpty) {
+              translationsMap ??= {};
+              translationsMap['zh'] = {
+                'definition': wordJson['chinese'].toString(),
+                'example': wordJson['example_zh']?.toString() ?? '',
+              };
+            }
+            
+            String? translationsJson;
+            if (translationsMap != null && translationsMap.isNotEmpty) {
+              translationsJson = json.encode(translationsMap);
             }
 
             await db.insert('words', {

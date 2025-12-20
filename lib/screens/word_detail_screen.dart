@@ -29,12 +29,22 @@ class _WordDetailScreenState extends State<WordDetailScreen> {
     final translationService = TranslationService.instance;
     await translationService.init();
 
+    final langCode = translationService.currentLanguage;
+    
+    // 디버그 로그
+    print('=== Translation Debug ===');
+    print('currentLanguage: $langCode');
+    print('needsTranslation: ${translationService.needsTranslation}');
+    print('word.translations: ${_word.translations}');
+    
     if (!translationService.needsTranslation) return;
 
-    // ?�장 번역�??�용 (API ?�출 ?�음)
-    final langCode = translationService.currentLanguage;
+    // 임베디드 번역 사용 (API 호출 없음)
     final embeddedDef = _word.getEmbeddedTranslation(langCode, 'definition');
     final embeddedEx = _word.getEmbeddedTranslation(langCode, 'example');
+    
+    print('embeddedDef: $embeddedDef');
+    print('embeddedEx: $embeddedEx');
 
     if (mounted) {
       setState(() {
