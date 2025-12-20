@@ -224,8 +224,6 @@ class _WordListScreenState extends State<WordListScreen> {
       {'level': 'N5', 'name': 'N5', 'color': Colors.green},
       {'level': 'N4', 'name': 'N4', 'color': Colors.blue},
       {'level': 'N3', 'name': 'N3', 'color': Colors.orange},
-      {'level': 'N2', 'name': 'N2', 'color': Colors.purple},
-      {'level': 'N1', 'name': 'N1', 'color': Colors.red},
     ];
 
     showModalBottomSheet(
@@ -309,16 +307,17 @@ class _WordListScreenState extends State<WordListScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        leading: widget.isFlashcardMode
-            ? IconButton(
-                icon: const Icon(Icons.arrow_back),
-                onPressed: () async {
-                  if (await _handleBackPress()) {
-                    if (context.mounted) Navigator.of(context).pop();
-                  }
-                },
-              )
-            : null,
+        leading:
+            widget.isFlashcardMode
+                ? IconButton(
+                  icon: const Icon(Icons.arrow_back),
+                  onPressed: () async {
+                    if (await _handleBackPress()) {
+                      if (context.mounted) Navigator.of(context).pop();
+                    }
+                  },
+                )
+                : null,
         title: Column(
           children: [
             Text(title),
@@ -482,7 +481,9 @@ class _WordListScreenState extends State<WordListScreen> {
               children: [
                 Expanded(
                   child: Text(
-                    word.getDisplayWord(displayMode: DisplayService.instance.displayMode),
+                    word.getDisplayWord(
+                      displayMode: DisplayService.instance.displayMode,
+                    ),
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 16 * _wordFontSize,
@@ -656,7 +657,10 @@ class _WordListScreenState extends State<WordListScreen> {
                             ),
                             const Spacer(),
                             Text(
-                              word.getDisplayWord(displayMode: DisplayService.instance.displayMode),
+                              word.getDisplayWord(
+                                displayMode:
+                                    DisplayService.instance.displayMode,
+                              ),
                               style: TextStyle(
                                 fontSize: 28 * _wordFontSize,
                                 fontWeight: FontWeight.bold,
@@ -800,4 +804,3 @@ class _WordListScreenState extends State<WordListScreen> {
     );
   }
 }
-

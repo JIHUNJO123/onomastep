@@ -1,0 +1,54 @@
+============================================================
+병합 완료 보고서
+============================================================
+N5: 674개 단어
+N4: 636개 단어
+N3: 1705개 단어
+------------------------------------------------------------
+총 단어 수: 3015개
+============================================================
+
+저장 경로:
+  - C:\Users\hooni\Desktop\jlpt_vocab_app\assets\data\words_n5_n3.json
+  - C:\Users\hooni\Desktop\jlpt_vocab_app\lib\data\words_n5_n3.json
+
+샘플 데이터 (처음 3개):
+{
+  "id": 1,
+  "word": "東",
+  "reading": "ひがし",
+  "definition": "east",
+  "level": "N5",
+  "korean": "",
+  "chinese": "",
+  "example": "",
+  "example_reading": "",
+  "example_meaning": "",
+  "source": "Bluskyo/Tanos"
+}
+{
+  "id": 2,
+  "word": "私",
+  "reading": "わたくし",
+  "definition": "(humble) I, myself",
+  "level": "N5",
+  "korean": "",
+  "chinese": "",
+  "example": "",
+  "example_reading": "",
+  "example_meaning": "",
+  "source": "Bluskyo/Tanos"
+}
+{
+  "id": 3,
+  "word": "一日",
+  "reading": "いちにち",
+  "definition": "(1) one day, (2) first of month",
+  "level": "N5",
+  "korean": "",
+  "chinese": "",
+  "example": "",
+  "example_reading": "",
+  "example_meaning": "",
+  "source": "Bluskyo/Tanos"
+}

@@ -176,7 +176,9 @@ class _WordDetailScreenState extends State<WordDetailScreen> {
                     ),
                     const SizedBox(height: 20),
                     Text(
-                      _word.getDisplayWord(displayMode: DisplayService.instance.displayMode),
+                      _word.getDisplayWord(
+                        displayMode: DisplayService.instance.displayMode,
+                      ),
                       style: const TextStyle(
                         fontSize: 28,
                         fontWeight: FontWeight.bold,
@@ -198,13 +200,14 @@ class _WordDetailScreenState extends State<WordDetailScreen> {
             ),
             const SizedBox(height: 16),
 
-            // Example Section - ?�어 ??(검?�??, 번역 ?�래 (?�색)
-            _buildExampleSection(
-              title: l10n.example,
-              icon: Icons.format_quote,
-              content: _word.example,
-              translation: _translatedExample,
-            ),
+            // Example Section - 예문이 있을 때만 표시
+            if (_word.example.isNotEmpty)
+              _buildExampleSection(
+                title: l10n.example,
+                icon: Icons.format_quote,
+                content: _word.example,
+                translation: _translatedExample,
+              ),
           ],
         ),
       ),
@@ -241,8 +244,8 @@ class _WordDetailScreenState extends State<WordDetailScreen> {
               ],
             ),
             const SizedBox(height: 12),
-            // 번역???�으�?번역 먼�? (??글??, ?�어 ?�래 (?�색)
-            if (translation != null) ...[
+            // 번역이 있으면 번역 먼저 (큰 글씨), 영어 아래 (작은 글씨)
+            if (translation != null && translation.isNotEmpty) ...[
               Text(
                 translation,
                 style: const TextStyle(
@@ -256,7 +259,7 @@ class _WordDetailScreenState extends State<WordDetailScreen> {
                 content,
                 style: TextStyle(
                   fontSize: 14,
-                  color: Colors.grey[600],
+                  color: Colors.grey[800],
                   height: 1.5,
                 ),
               ),
