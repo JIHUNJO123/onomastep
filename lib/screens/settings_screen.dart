@@ -122,7 +122,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                             title: Text(lang.nativeName),
                             subtitle: Text(lang.name),
                             onTap: () {
-                              // TranslationService???�어 코드 ?�??
+                              // TranslationService???�어 코드 ?�??
                               TranslationService.instance.setLanguage(
                                 lang.code,
                               );
@@ -334,7 +334,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
             subtitle: Text(
               PurchaseService.instance.getRemoveAdsPrice() ??
                   (PurchaseService.instance.isAvailable
-                      ? '${l10n.loading} (Products: ${PurchaseService.instance.products.length})'
+                      ? l10n.loading
                       : '${l10n.notAvailable} - Store not available'),
             ),
             trailing: ElevatedButton(

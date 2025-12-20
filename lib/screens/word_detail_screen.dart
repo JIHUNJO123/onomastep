@@ -30,19 +30,19 @@ class _WordDetailScreenState extends State<WordDetailScreen> {
     await translationService.init();
 
     final langCode = translationService.currentLanguage;
-    
+
     // 디버그 로그
     print('=== Translation Debug ===');
     print('currentLanguage: $langCode');
     print('needsTranslation: ${translationService.needsTranslation}');
     print('word.translations: ${_word.translations}');
-    
+
     if (!translationService.needsTranslation) return;
 
     // 임베디드 번역 사용 (API 호출 없음)
     final embeddedDef = _word.getEmbeddedTranslation(langCode, 'definition');
     final embeddedEx = _word.getEmbeddedTranslation(langCode, 'example');
-    
+
     print('embeddedDef: $embeddedDef');
     print('embeddedEx: $embeddedEx');
 

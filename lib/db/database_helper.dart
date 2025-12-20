@@ -90,28 +90,32 @@ class DatabaseHelper {
           for (var wordJson in data) {
             // translations를 JSON 문자열로 저장
             Map<String, dynamic>? translationsMap;
-            
+
             // 형식 1: translations 객체가 있는 경우
             if (wordJson['translations'] != null) {
-              translationsMap = Map<String, dynamic>.from(wordJson['translations']);
+              translationsMap = Map<String, dynamic>.from(
+                wordJson['translations'],
+              );
             }
-            
+
             // 형식 2: korean, chinese 필드가 있는 경우 (N5-N3 데이터)
-            if (wordJson['korean'] != null && wordJson['korean'].toString().isNotEmpty) {
+            if (wordJson['korean'] != null &&
+                wordJson['korean'].toString().isNotEmpty) {
               translationsMap ??= {};
               translationsMap['ko'] = {
                 'definition': wordJson['korean'].toString(),
                 'example': wordJson['example_ko']?.toString() ?? '',
               };
             }
-            if (wordJson['chinese'] != null && wordJson['chinese'].toString().isNotEmpty) {
+            if (wordJson['chinese'] != null &&
+                wordJson['chinese'].toString().isNotEmpty) {
               translationsMap ??= {};
               translationsMap['zh'] = {
                 'definition': wordJson['chinese'].toString(),
                 'example': wordJson['example_zh']?.toString() ?? '',
               };
             }
-            
+
             String? translationsJson;
             if (translationsMap != null && translationsMap.isNotEmpty) {
               translationsJson = json.encode(translationsMap);
