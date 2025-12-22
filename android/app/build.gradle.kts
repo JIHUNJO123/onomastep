@@ -9,7 +9,7 @@ plugins {
 }
 
 android {
-    namespace = "com.jhuni.jlpt_vocab_app"
+    namespace = "com.jhuni.onomastep"
     compileSdk = flutter.compileSdkVersion
     ndkVersion = "27.0.12077973"
 
@@ -23,7 +23,7 @@ android {
     }
 
     defaultConfig {
-        applicationId = "com.jhuni.jlpt_vocab_app"
+        applicationId = "com.jhuni.onomastep"
         minSdk = 21
         targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode

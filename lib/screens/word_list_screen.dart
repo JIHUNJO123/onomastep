@@ -1,6 +1,6 @@
 ﻿import 'package:flutter/material.dart';
 import 'package:flip_card/flip_card.dart';
-import 'package:jlpt_vocab_app/l10n/generated/app_localizations.dart';
+import 'package:onoma_step_app/l10n/generated/app_localizations.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import '../db/database_helper.dart';
@@ -823,3 +823,4 @@ class _WordListScreenState extends State<WordListScreen> {
     );
   }
 }
+

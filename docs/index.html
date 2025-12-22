@@ -1,70 +1,53 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SAT Vocabulary - Master SAT Words</title>
+    <title>Onoma Step - Japanese Onomatopoeia Learning App</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
-            line-height: 1.6;
-            color: #333;
-        }
-        .hero {
-            background: linear-gradient(135deg, #3B82F6 0%, #1D4ED8 100%);
-            color: white;
-            padding: 60px 20px;
-            text-align: center;
-        }
-        .hero h1 { font-size: 2.5em; margin-bottom: 10px; }
-        .hero p { font-size: 1.2em; opacity: 0.9; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; line-height: 1.6; color: #333; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; }
         .container { max-width: 800px; margin: 0 auto; padding: 40px 20px; }
-        .features { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin: 40px 0; }
-        .feature { background: #f8f9fa; padding: 20px; border-radius: 10px; }
-        .feature h3 { color: #1D4ED8; margin-bottom: 10px; }
-        .cta { text-align: center; margin: 40px 0; }
-        .btn { display: inline-block; background: #1D4ED8; color: white; padding: 15px 30px; border-radius: 8px; text-decoration: none; font-weight: bold; }
-        .btn:hover { background: #1E40AF; }
-        footer { background: #f8f9fa; padding: 20px; text-align: center; }
-        footer a { color: #1D4ED8; margin: 0 10px; }
+        .hero { text-align: center; padding: 60px 20px; background: white; border-radius: 20px; box-shadow: 0 10px 40px rgba(0,0,0,0.2); margin-bottom: 30px; }
+        h1 { font-size: 2.5em; color: #1a1a2e; margin-bottom: 10px; }
+        .tagline { font-size: 1.2em; color: #666; margin-bottom: 30px; }
+        .features { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin: 30px 0; }
+        .feature { background: #f8f9fa; padding: 20px; border-radius: 12px; text-align: center; }
+        .feature-icon { font-size: 2em; margin-bottom: 10px; }
+        .stats { display: flex; justify-content: center; gap: 40px; margin: 30px 0; }
+        .stat { text-align: center; }
+        .stat-number { font-size: 2em; font-weight: bold; color: #667eea; }
+        .store-buttons { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin-top: 30px; }
+        .store-btn { display: inline-block; padding: 12px 30px; background: #1a1a2e; color: white; text-decoration: none; border-radius: 10px; font-weight: 600; }
+        .footer { text-align: center; padding: 30px; color: white; }
+        .footer a { color: white; margin: 0 15px; }
     </style>
 </head>
 <body>
-    <div class="hero">
-        <h1>📚 SAT Vocabulary</h1>
-        <p>Master 2000+ Essential SAT Words</p>
-    </div>
-    
     <div class="container">
-        <div class="features">
-            <div class="feature">
-                <h3>📖 2000+ SAT Words</h3>
-                <p>Comprehensive vocabulary list curated from actual SAT exams with definitions and examples.</p>
+        <div class="hero">
+            <h1>Onoma Step</h1>
+            <p class="tagline">Master Japanese Onomatopoeia and Mimetic Words</p>
+            <div class="stats">
+                <div class="stat"><div class="stat-number">1,200+</div><div>Words</div></div>
+                <div class="stat"><div class="stat-number">40+</div><div>Categories</div></div>
+                <div class="stat"><div class="stat-number">3</div><div>Languages</div></div>
             </div>
-            <div class="feature">
-                <h3>🎯 Smart Quizzes</h3>
-                <p>Test your knowledge with interactive quizzes and track your progress over time.</p>
+            <div class="features">
+                <div class="feature"><div class="feature-icon"></div><h3>Sound Words</h3><p>Learn giseigo - words that mimic sounds</p></div>
+                <div class="feature"><div class="feature-icon"></div><h3>Mimetic Words</h3><p>Master gitaigo - words that describe states</p></div>
+                <div class="feature"><div class="feature-icon"></div><h3>Real Examples</h3><p>Learn with authentic Japanese sentences</p></div>
+                <div class="feature"><div class="feature-icon"></div><h3>Quiz</h3><p>Test your knowledge effectively</p></div>
             </div>
-            <div class="feature">
-                <h3>🌍 Multi-language</h3>
-                <p>Translations available in Korean, Chinese, and Hindi for better understanding.</p>
-            </div>
-            <div class="feature">
-                <h3>📊 Progress Tracking</h3>
-                <p>Monitor your learning journey with detailed statistics and study streaks.</p>
+            <div class="store-buttons">
+                <a href="#" class="store-btn">App Store</a>
+                <a href="#" class="store-btn">Google Play</a>
             </div>
         </div>
-        
-        <div class="cta">
-            <a href="https://play.google.com/store/apps/details?id=com.jhuni.sat_vocab_app" class="btn">Download on Google Play</a>
+        <div class="footer">
+            <p><a href="privacy.html">Privacy Policy</a> | <a href="support.html">Support</a></p>
+            <p style="margin-top: 15px;"> 2024 Onoma Step. Contact: <a href="mailto:jihun.jo@yahoo.com">jihun.jo@yahoo.com</a></p>
         </div>
     </div>
-    
-    <footer>
-        <a href="privacy-policy.html">Privacy Policy</a>
-        <a href="support.html">Support</a>
-        <p style="margin-top: 10px;">© 2024 SAT Vocabulary App</p>
-    </footer>
 </body>
 </html>

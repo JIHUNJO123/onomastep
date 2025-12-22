@@ -1,8 +1,8 @@
-import 'dart:io';
+﻿import 'dart:io';
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:jlpt_vocab_app/l10n/generated/app_localizations.dart';
+import 'package:onoma_step_app/l10n/generated/app_localizations.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
@@ -16,14 +16,12 @@ import 'services/display_service.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  // Global error handling
   FlutterError.onError = (FlutterErrorDetails details) {
     FlutterError.presentError(details);
     debugPrint('Flutter Error: ${details.exception}');
   };
 
   try {
-    // Platform-specific sqflite initialization
     if (kIsWeb) {
       databaseFactory = databaseFactoryFfiWeb;
     } else if (Platform.isWindows || Platform.isLinux || Platform.isMacOS) {
@@ -31,24 +29,20 @@ void main() async {
       databaseFactory = databaseFactoryFfi;
     }
 
-    // Translation service initialization
     await TranslationService.instance.init();
 
-    // Display service initialization
     try {
       await DisplayService.instance.init();
     } catch (e) {
       debugPrint('DisplayService initialization error: $e');
     }
 
-    // Ad service initialization (continue even if failed)
     try {
       await AdService.instance.initialize();
     } catch (e) {
       debugPrint('AdService initialization error: $e');
     }
 
-    // In-app purchase service initialization (continue even if failed)
     try {
       await PurchaseService.instance.initialize();
     } catch (e) {
@@ -61,7 +55,7 @@ void main() async {
   runApp(
     ChangeNotifierProvider(
       create: (_) => LocaleProvider(),
-      child: const JLPTVocabApp(),
+      child: const OnomaStepApp(),
     ),
   );
 }
@@ -111,15 +105,15 @@ class LocaleProvider extends ChangeNotifier {
   }
 }
 
-class JLPTVocabApp extends StatelessWidget {
-  const JLPTVocabApp({super.key});
+class OnomaStepApp extends StatelessWidget {
+  const OnomaStepApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     final localeProvider = Provider.of<LocaleProvider>(context);
 
     return MaterialApp(
-      title: 'JLPT Step N5-N3',
+      title: 'Onoma Step',
       debugShowCheckedModeBanner: false,
 
       locale: localeProvider.locale,
@@ -137,7 +131,7 @@ class JLPTVocabApp extends StatelessWidget {
 
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(
-          seedColor: const Color(0xFFE53E3E),
+          seedColor: const Color(0xFFFF6B35),
           brightness: Brightness.light,
         ),
         useMaterial3: false,
@@ -162,7 +156,7 @@ class JLPTVocabApp extends StatelessWidget {
       ),
       darkTheme: ThemeData(
         colorScheme: ColorScheme.fromSeed(
-          seedColor: const Color(0xFFE53E3E),
+          seedColor: const Color(0xFFFF6B35),
           brightness: Brightness.dark,
         ),
         useMaterial3: true,

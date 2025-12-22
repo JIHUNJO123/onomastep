@@ -9,7 +9,7 @@ class AppLocalizationsZh extends AppLocalizations {
   AppLocalizationsZh([String locale = 'zh']) : super(locale);
 
   @override
-  String get appTitle => 'JLPT Step N5–N3';
+  String get appTitle => 'Onoma Step';
 
   @override
   String get todayWord => '今日单词';
@@ -18,13 +18,13 @@ class AppLocalizationsZh extends AppLocalizations {
   String get learning => '学习';
 
   @override
-  String get levelLearning => '难度等级';
+  String get levelLearning => '分类';
 
   @override
   String get allWords => '全部单词';
 
   @override
-  String get viewAllWords => '查看所有词汇';
+  String get viewAllWords => '查看所有拟声词';
 
   @override
   String get favorites => '收藏夹';
@@ -42,7 +42,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get quiz => '测验';
 
   @override
-  String get testYourself => '测试自己';
+  String get testYourself => '自我测试';
 
   @override
   String get settings => '设置';
@@ -72,7 +72,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get dailyReminder => '每日提醒';
 
   @override
-  String get dailyReminderDesc => '每天提醒您学习';
+  String get dailyReminderDesc => '每天获取学习提醒';
 
   @override
   String get removeAds => '移除广告';
@@ -111,7 +111,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get disclaimer => '免责声明';
 
   @override
-  String get disclaimerText => '本应用是独立的JLPT备考工具，与日本国际交流基金会或日本国际教育支援协会无任何关联、背书或认可关系。';
+  String get disclaimerText => '本应用使用JMdict (CC-BY-SA 4.0)和Tatoeba (CC-BY 2.0)数据。';
 
   @override
   String get privacyPolicy => '隐私政策';
@@ -123,60 +123,60 @@ class AppLocalizationsZh extends AppLocalizations {
   String get noFavoritesYet => '暂无收藏';
 
   @override
-  String get tapHeartToSave => '点击心形图标保存单词';
+  String get tapHeartToSave => '点击心形图标收藏单词';
 
   @override
-  String get addedToFavorites => '已添加到收藏';
+  String get addedToFavorites => '已添加到收藏夹';
 
   @override
-  String get removedFromFavorites => '已从收藏中移除';
+  String get removedFromFavorites => '已从收藏夹移除';
 
   @override
   String get wordDetail => '单词详情';
 
   @override
-  String get definition => '定义';
+  String get definition => '释义';
 
   @override
   String get example => '例句';
 
   @override
   String levelWords(String level) {
-    return '$level单词';
+    return '$level';
   }
 
   @override
-  String get n5 => 'N5';
+  String get n5 => '声音';
 
   @override
-  String get n5Desc => '初级 - 674词';
+  String get n5Desc => '声音相关词汇';
 
   @override
-  String get n4 => 'N4';
+  String get n4 => '动作';
 
   @override
-  String get n4Desc => '初中级 - 636词';
+  String get n4Desc => '动作相关词汇';
 
   @override
-  String get n3 => 'N3';
+  String get n3 => '情感';
 
   @override
-  String get n3Desc => '中级 - 1,705词';
+  String get n3Desc => '情感相关词汇';
 
   @override
-  String get n2 => 'N2';
+  String get n2 => '状态';
 
   @override
-  String get n2Desc => '中高级 - 1,200词';
+  String get n2Desc => '状态相关词汇';
 
   @override
-  String get n1 => 'N1';
+  String get n1 => '其他';
 
   @override
-  String get n1Desc => '高级 - 1,500词';
+  String get n1Desc => '其他分类';
 
   @override
-  String get alphabetical => '字母顺序';
+  String get alphabetical => '按字母顺序';
 
   @override
   String get random => '随机';
@@ -206,25 +206,25 @@ class AppLocalizationsZh extends AppLocalizations {
   String get tryAgain => '再试一次';
 
   @override
-  String get showResult => '显示结果';
+  String get showResult => '查看结果';
 
   @override
-  String get wordToMeaning => '单词释义';
+  String get wordToMeaning => '词义';
 
   @override
-  String get meaningToWord => '释义单词';
+  String get meaningToWord => '义词';
 
   @override
   String get excellent => '太棒了！满分！';
 
   @override
-  String get great => '很好！继续加油！';
+  String get great => '做得好！继续加油！';
 
   @override
   String get good => '不错！继续练习！';
 
   @override
-  String get keepPracticing => '继续练习！你会进步的！';
+  String get keepPracticing => '继续练习会进步的！';
 
   @override
   String get levelA1 => '入门';
@@ -242,10 +242,10 @@ class AppLocalizationsZh extends AppLocalizations {
   String get levelC1 => '高级';
 
   @override
-  String get privacyPolicyContent => '本应用不收集、存储或共享任何个人信息。您的学习进度和收藏仅存储在您的设备上。';
+  String get privacyPolicyContent => '本应用不收集任何个人信息。';
 
   @override
-  String get restorePurchaseDesc => '如果您之前在其他设备上购买了移除广告或重新安装了应用，请点击此处恢复购买。';
+  String get restorePurchaseDesc => '恢复您之前的购买。';
 
   @override
   String get restoreComplete => '恢复完成';
@@ -254,25 +254,25 @@ class AppLocalizationsZh extends AppLocalizations {
   String get noPurchaseFound => '未找到之前的购买记录';
 
   @override
-  String get furiganaDisplayMode => '假名显示方式';
+  String get furiganaDisplayMode => '读音显示';
 
   @override
-  String get parenthesesMode => '括号标注';
+  String get parenthesesMode => '括号';
 
   @override
-  String get furiganaMode => '假名标注';
+  String get furiganaMode => '注音样式';
 
   @override
-  String get parenthesesExample => '例：食べ物 (たべもの)';
+  String get parenthesesExample => '例：ドキドキ（心跳声）';
 
   @override
-  String get furiganaExample => '汉字上方显示假名';
+  String get furiganaExample => '词上方显示读音';
 
   @override
-  String get showFuriganaInList => '在单词列表中显示假名';
+  String get showFuriganaInList => '显示读音';
 
   @override
-  String get showFuriganaInListDesc => '在单词列表中的汉字上方显示假名';
+  String get showFuriganaInListDesc => '在单词列表中显示读音';
 
   @override
   String get marketing => '营销';

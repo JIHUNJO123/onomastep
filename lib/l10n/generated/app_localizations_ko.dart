@@ -9,7 +9,7 @@ class AppLocalizationsKo extends AppLocalizations {
   AppLocalizationsKo([String locale = 'ko']) : super(locale);
 
   @override
-  String get appTitle => 'JLPT Step N5–N3';
+  String get appTitle => 'Onoma Step';
 
   @override
   String get todayWord => '오늘의 단어';
@@ -18,19 +18,19 @@ class AppLocalizationsKo extends AppLocalizations {
   String get learning => '학습';
 
   @override
-  String get levelLearning => '난이도별 학습';
+  String get levelLearning => '카테고리';
 
   @override
   String get allWords => '전체 단어';
 
   @override
-  String get viewAllWords => '모든 어휘 보기';
+  String get viewAllWords => '모든 의성어/의태어 보기';
 
   @override
   String get favorites => '즐겨찾기';
 
   @override
-  String get savedWords => '저장된 단어';
+  String get savedWords => '저장한 단어';
 
   @override
   String get flashcard => '플래시카드';
@@ -81,7 +81,7 @@ class AppLocalizationsKo extends AppLocalizations {
   String get adsRemoved => '광고 제거됨';
 
   @override
-  String get thankYou => '응원해 주셔서 감사합니다!';
+  String get thankYou => '후원해 주셔서 감사합니다!';
 
   @override
   String get buy => '구매';
@@ -111,7 +111,7 @@ class AppLocalizationsKo extends AppLocalizations {
   String get disclaimer => '면책 조항';
 
   @override
-  String get disclaimerText => '이 앱은 독립적인 JLPT 준비 도구이며 일본국제교류기금 또는 일본국제교육협회와 제휴, 보증 또는 승인 관계가 없습니다.';
+  String get disclaimerText => '이 앱은 JMdict (CC-BY-SA 4.0) 및 Tatoeba (CC-BY 2.0) 데이터를 사용합니다.';
 
   @override
   String get privacyPolicy => '개인정보 처리방침';
@@ -123,7 +123,7 @@ class AppLocalizationsKo extends AppLocalizations {
   String get noFavoritesYet => '즐겨찾기가 없습니다';
 
   @override
-  String get tapHeartToSave => '하트 아이콘을 눌러 단어를 저장하세요';
+  String get tapHeartToSave => '하트를 눌러 단어를 저장하세요';
 
   @override
   String get addedToFavorites => '즐겨찾기에 추가됨';
@@ -135,51 +135,51 @@ class AppLocalizationsKo extends AppLocalizations {
   String get wordDetail => '단어 상세';
 
   @override
-  String get definition => '정의';
+  String get definition => '뜻';
 
   @override
   String get example => '예문';
 
   @override
   String levelWords(String level) {
-    return '$level 단어';
+    return '$level';
   }
 
   @override
-  String get n5 => 'N5';
+  String get n5 => '소리';
 
   @override
-  String get n5Desc => '초급 - 674단어';
+  String get n5Desc => '소리 관련 단어';
 
   @override
-  String get n4 => 'N4';
+  String get n4 => '움직임';
 
   @override
-  String get n4Desc => '초중급 - 636단어';
+  String get n4Desc => '동작 관련 단어';
 
   @override
-  String get n3 => 'N3';
+  String get n3 => '감정';
 
   @override
-  String get n3Desc => '중급 - 1,705단어';
+  String get n3Desc => '감정 관련 단어';
 
   @override
-  String get n2 => 'N2';
+  String get n2 => '상태';
 
   @override
-  String get n2Desc => '중상급 - 1,200단어';
+  String get n2Desc => '상태 관련 단어';
 
   @override
-  String get n1 => 'N1';
+  String get n1 => '기타';
 
   @override
-  String get n1Desc => '고급 - 1,500단어';
+  String get n1Desc => '기타 카테고리';
 
   @override
-  String get alphabetical => '알파벳순';
+  String get alphabetical => '가나다순';
 
   @override
-  String get random => '무작위';
+  String get random => '랜덤';
 
   @override
   String get tapToFlip => '탭하여 뒤집기';
@@ -215,7 +215,7 @@ class AppLocalizationsKo extends AppLocalizations {
   String get meaningToWord => '뜻  단어';
 
   @override
-  String get excellent => '훌륭해요! 만점!';
+  String get excellent => '완벽해요! 만점!';
 
   @override
   String get great => '잘했어요! 계속 화이팅!';
@@ -224,7 +224,7 @@ class AppLocalizationsKo extends AppLocalizations {
   String get good => '좋아요! 계속 연습하세요!';
 
   @override
-  String get keepPracticing => '계속 연습하세요! 실력이 늘 거예요!';
+  String get keepPracticing => '계속 연습하면 좋아져요!';
 
   @override
   String get levelA1 => '입문';
@@ -242,10 +242,10 @@ class AppLocalizationsKo extends AppLocalizations {
   String get levelC1 => '고급';
 
   @override
-  String get privacyPolicyContent => '이 앱은 개인정보를 수집, 저장 또는 공유하지 않습니다. 학습 진행 상황과 즐겨찾기는 기기에만 저장됩니다.';
+  String get privacyPolicyContent => '이 앱은 개인정보를 수집하지 않습니다.';
 
   @override
-  String get restorePurchaseDesc => '다른 기기에서 광고 제거를 구매했거나 앱을 재설치한 경우 여기를 눌러 구매를 복원하세요.';
+  String get restorePurchaseDesc => '이전 구매를 복원합니다.';
 
   @override
   String get restoreComplete => '복원 완료';
@@ -254,25 +254,25 @@ class AppLocalizationsKo extends AppLocalizations {
   String get noPurchaseFound => '이전 구매 내역이 없습니다';
 
   @override
-  String get furiganaDisplayMode => '읽기 표시 방식';
+  String get furiganaDisplayMode => '읽기 표시';
 
   @override
-  String get parenthesesMode => '괄호 병기';
+  String get parenthesesMode => '괄호';
 
   @override
-  String get furiganaMode => '후리가나';
+  String get furiganaMode => '루비 스타일';
 
   @override
-  String get parenthesesExample => '예: 食べ物 (たべもの)';
+  String get parenthesesExample => '예: ドキドキ (두근두근)';
 
   @override
-  String get furiganaExample => '한자 위에 읽기 표시';
+  String get furiganaExample => '단어 위에 읽기 표시';
 
   @override
-  String get showFuriganaInList => '단어 목록에서 후리가나 표시';
+  String get showFuriganaInList => '읽기 표시';
 
   @override
-  String get showFuriganaInListDesc => '단어 목록에서 한자 위에 읽기 표시';
+  String get showFuriganaInListDesc => '단어 목록에 읽기 표시';
 
   @override
   String get marketing => '마케팅';

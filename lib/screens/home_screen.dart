@@ -1,5 +1,5 @@
 ﻿import 'package:flutter/material.dart';
-import 'package:jlpt_vocab_app/l10n/generated/app_localizations.dart';
+import 'package:onoma_step_app/l10n/generated/app_localizations.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import '../db/database_helper.dart';
 import '../models/word.dart';
@@ -25,6 +25,18 @@ class _HomeScreenState extends State<HomeScreen> {
   bool _isLoading = true;
   bool _isBannerAdLoaded = false;
   String? _lastLanguage;
+
+  // 의성어/의태어 카테고리
+  final List<Map<String, dynamic>> _categories = [
+    {'category': 'Sounds', 'icon': Icons.volume_up, 'color': Colors.blue},
+    {'category': 'Animal Sounds', 'icon': Icons.pets, 'color': Colors.green},
+    {'category': 'Motion', 'icon': Icons.directions_run, 'color': Colors.orange},
+    {'category': 'Emotion', 'icon': Icons.emoji_emotions, 'color': Colors.pink},
+    {'category': 'State', 'icon': Icons.auto_awesome, 'color': Colors.purple},
+    {'category': 'Eating', 'icon': Icons.restaurant, 'color': Colors.red},
+    {'category': 'Body', 'icon': Icons.accessibility, 'color': Colors.teal},
+    {'category': 'Others', 'icon': Icons.more_horiz, 'color': Colors.grey},
+  ];
 
   @override
   void initState() {
@@ -68,7 +80,6 @@ class _HomeScreenState extends State<HomeScreen> {
         await translationService.init();
 
         if (translationService.needsTranslation) {
-          // ?댁옣 踰덉뿭留??ъ슜 (API ?몄텧 ?놁쓬)
           final embeddedTranslation = word.getEmbeddedTranslation(
             translationService.currentLanguage,
             'definition',
@@ -147,11 +158,8 @@ class _HomeScreenState extends State<HomeScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // Today's Word Card
                   _buildTodayWordCard(),
                   const SizedBox(height: 24),
-
-                  // Quick Actions
                   Text(
                     l10n.learning,
                     style: const TextStyle(
@@ -161,10 +169,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                   const SizedBox(height: 12),
                   _buildMenuGrid(),
-
                   const SizedBox(height: 24),
-
-                  // Difficulty Level
                   Text(
                     l10n.levelLearning,
                     style: const TextStyle(
@@ -173,12 +178,11 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                   const SizedBox(height: 12),
-                  _buildLevelCards(),
+                  _buildCategoryCards(),
                 ],
               ),
             ),
           ),
-          // 諛곕꼫 愿묎퀬
           _buildBannerAd(),
         ],
       ),
@@ -283,10 +287,10 @@ class _HomeScreenState extends State<HomeScreen> {
                       borderRadius: BorderRadius.circular(12),
                     ),
                     child: Text(
-                      _todayWord!.level,
+                      _todayWord!.category,
                       style: const TextStyle(
                         color: Colors.white,
-                        fontSize: 12,
+                        fontSize: 10,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -294,22 +298,22 @@ class _HomeScreenState extends State<HomeScreen> {
                 ],
               ),
               const SizedBox(height: 20),
-              Row(
-                children: [
-                  Expanded(
-                    child: Text(
-                      _todayWord!.getDisplayWord(
-                        displayMode: DisplayService.instance.displayMode,
-                      ),
-                      style: const TextStyle(
-                        fontSize: 28,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
-                ],
+              Text(
+                _todayWord!.word,
+                style: const TextStyle(
+                  fontSize: 32,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                ),
               ),
+              if (_todayWord!.hiragana != null && _todayWord!.hiragana != _todayWord!.word)
+                Text(
+                  _todayWord!.hiragana!,
+                  style: const TextStyle(
+                    fontSize: 16,
+                    color: Colors.white70,
+                  ),
+                ),
               const SizedBox(height: 12),
               Text(
                 _translatedDefinition ?? _todayWord!.definition,
@@ -368,8 +372,7 @@ class _HomeScreenState extends State<HomeScreen> {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder:
-                    (context) => const WordListScreen(isFlashcardMode: true),
+                builder: (context) => const WordListScreen(isFlashcardMode: true),
               ),
             );
           },
@@ -440,40 +443,16 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  Widget _buildLevelCards() {
-    final l10n = AppLocalizations.of(context)!;
-
-    // JLPT Level 카드 (N5-N1)
-    final levels = [
-      {
-        'level': 'N5',
-        'name': l10n.n5,
-        'desc': l10n.n5Desc,
-        'color': Colors.green,
-      },
-      {
-        'level': 'N4',
-        'name': l10n.n4,
-        'desc': l10n.n4Desc,
-        'color': Colors.blue,
-      },
-      {
-        'level': 'N3',
-        'name': l10n.n3,
-        'desc': l10n.n3Desc,
-        'color': Colors.orange,
-      },
-    ];
-
+  Widget _buildCategoryCards() {
     return SizedBox(
-      height: 120,
+      height: 100,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
-        itemCount: levels.length,
+        itemCount: _categories.length,
         itemBuilder: (context, index) {
-          final level = levels[index];
+          final cat = _categories[index];
           return Container(
-            width: 140,
+            width: 100,
             margin: const EdgeInsets.only(right: 10),
             child: Card(
               elevation: 2,
@@ -485,9 +464,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder:
-                          (context) =>
-                              WordListScreen(level: level['level'] as String),
+                      builder: (context) => WordListScreen(
+                        level: cat['category'] as String,
+                      ),
                     ),
                   );
                 },
@@ -497,44 +476,37 @@ class _HomeScreenState extends State<HomeScreen> {
                     borderRadius: BorderRadius.circular(12),
                     gradient: LinearGradient(
                       colors: [
-                        (level['color'] as Color).withAlpha(
-                          (0.8 * 255).toInt(),
-                        ),
-                        (level['color'] as Color),
+                        (cat['color'] as Color).withAlpha((0.8 * 255).toInt()),
+                        (cat['color'] as Color),
                       ],
                       begin: Alignment.topLeft,
                       end: Alignment.bottomRight,
                     ),
                   ),
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 8.0,
-                      vertical: 10.0,
-                    ),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          level['level'] as String,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(
+                        cat['icon'] as IconData,
+                        color: Colors.white,
+                        size: 28,
+                      ),
+                      const SizedBox(height: 8),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 4),
+                        child: Text(
+                          cat['category'] as String,
                           style: const TextStyle(
-                            fontSize: 14,
+                            fontSize: 10,
                             fontWeight: FontWeight.bold,
                             color: Colors.white,
-                          ),
-                        ),
-                        const SizedBox(height: 4),
-                        Text(
-                          level['desc'] as String,
-                          style: const TextStyle(
-                            fontSize: 9,
-                            color: Colors.white70,
                           ),
                           textAlign: TextAlign.center,
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
                 ),
               ),

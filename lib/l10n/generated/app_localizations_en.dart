@@ -9,7 +9,7 @@ class AppLocalizationsEn extends AppLocalizations {
   AppLocalizationsEn([String locale = 'en']) : super(locale);
 
   @override
-  String get appTitle => 'JLPT Step N5–N3';
+  String get appTitle => 'Onoma Step';
 
   @override
   String get todayWord => 'Today\'s Word';
@@ -18,13 +18,13 @@ class AppLocalizationsEn extends AppLocalizations {
   String get learning => 'Learning';
 
   @override
-  String get levelLearning => 'Difficulty Level';
+  String get levelLearning => 'Categories';
 
   @override
   String get allWords => 'All Words';
 
   @override
-  String get viewAllWords => 'View all vocabulary';
+  String get viewAllWords => 'View all onomatopoeia';
 
   @override
   String get favorites => 'Favorites';
@@ -111,7 +111,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get disclaimer => 'Disclaimer';
 
   @override
-  String get disclaimerText => 'This app is an independent JLPT preparation tool and is not affiliated with, endorsed by, or approved by the Japan Foundation or Japan Educational Exchanges and Services.';
+  String get disclaimerText => 'This app uses data from JMdict (CC-BY-SA 4.0) and Tatoeba (CC-BY 2.0).';
 
   @override
   String get privacyPolicy => 'Privacy Policy';
@@ -142,38 +142,38 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String levelWords(String level) {
-    return '$level Words';
+    return '$level';
   }
 
   @override
-  String get n5 => 'N5';
+  String get n5 => 'Sounds';
 
   @override
-  String get n5Desc => 'Beginner - 674 words';
+  String get n5Desc => 'Sound words';
 
   @override
-  String get n4 => 'N4';
+  String get n4 => 'Motion';
 
   @override
-  String get n4Desc => 'Elementary - 636 words';
+  String get n4Desc => 'Movement words';
 
   @override
-  String get n3 => 'N3';
+  String get n3 => 'Emotion';
 
   @override
-  String get n3Desc => 'Intermediate - 1,705 words';
+  String get n3Desc => 'Feeling words';
 
   @override
-  String get n2 => 'N2';
+  String get n2 => 'State';
 
   @override
-  String get n2Desc => 'Upper Intermediate - 1,200 words';
+  String get n2Desc => 'Condition words';
 
   @override
-  String get n1 => 'N1';
+  String get n1 => 'Others';
 
   @override
-  String get n1Desc => 'Advanced - 1,500 words';
+  String get n1Desc => 'Other categories';
 
   @override
   String get alphabetical => 'Alphabetical';
@@ -224,7 +224,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get good => 'Good effort! Keep practicing!';
 
   @override
-  String get keepPracticing => 'Keep practicing! You will improve!';
+  String get keepPracticing => 'Keep practicing!';
 
   @override
   String get levelA1 => 'Beginner';
@@ -242,10 +242,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String get levelC1 => 'Advanced';
 
   @override
-  String get privacyPolicyContent => 'This app does not collect, store, or share any personal information. Your learning progress and favorites are stored only on your device. No data is transmitted to external servers.';
+  String get privacyPolicyContent => 'This app does not collect any personal information.';
 
   @override
-  String get restorePurchaseDesc => 'If you have previously purchased ad removal on another device or after reinstalling the app, tap here to restore your purchase.';
+  String get restorePurchaseDesc => 'Restore your previous purchase.';
 
   @override
   String get restoreComplete => 'Restore complete';
@@ -263,16 +263,16 @@ class AppLocalizationsEn extends AppLocalizations {
   String get furiganaMode => 'Ruby Style';
 
   @override
-  String get parenthesesExample => 'e.g. 食べ物 (たべもの)';
+  String get parenthesesExample => 'e.g. ドキドキ (dokidoki)';
 
   @override
-  String get furiganaExample => 'Reading above kanji';
+  String get furiganaExample => 'Reading above word';
 
   @override
-  String get showFuriganaInList => 'Show Furigana in Word List';
+  String get showFuriganaInList => 'Show Reading';
 
   @override
-  String get showFuriganaInListDesc => 'Display reading above kanji in word list';
+  String get showFuriganaInListDesc => 'Display reading in word list';
 
   @override
   String get marketing => 'Marketing';

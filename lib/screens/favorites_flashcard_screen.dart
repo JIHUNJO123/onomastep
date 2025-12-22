@@ -1,6 +1,6 @@
-import 'package:flutter/material.dart';
+﻿import 'package:flutter/material.dart';
 import 'package:flip_card/flip_card.dart';
-import 'package:jlpt_vocab_app/l10n/generated/app_localizations.dart';
+import 'package:onoma_step_app/l10n/generated/app_localizations.dart';
 import '../models/word.dart';
 import '../services/translation_service.dart';
 import '../services/display_service.dart';
@@ -351,3 +351,4 @@ class _FavoritesFlashcardScreenState extends State<FavoritesFlashcardScreen> {
     );
   }
 }
+

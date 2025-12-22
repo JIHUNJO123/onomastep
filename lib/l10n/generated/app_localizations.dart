@@ -100,7 +100,7 @@ abstract class AppLocalizations {
   /// No description provided for @appTitle.
   ///
   /// In en, this message translates to:
-  /// **'JLPT Step N5–N3'**
+  /// **'Onoma Step'**
   String get appTitle;
 
   /// No description provided for @todayWord.
@@ -118,7 +118,7 @@ abstract class AppLocalizations {
   /// No description provided for @levelLearning.
   ///
   /// In en, this message translates to:
-  /// **'Difficulty Level'**
+  /// **'Categories'**
   String get levelLearning;
 
   /// No description provided for @allWords.
@@ -130,7 +130,7 @@ abstract class AppLocalizations {
   /// No description provided for @viewAllWords.
   ///
   /// In en, this message translates to:
-  /// **'View all vocabulary'**
+  /// **'View all onomatopoeia'**
   String get viewAllWords;
 
   /// No description provided for @favorites.
@@ -304,7 +304,7 @@ abstract class AppLocalizations {
   /// No description provided for @disclaimerText.
   ///
   /// In en, this message translates to:
-  /// **'This app is an independent JLPT preparation tool and is not affiliated with, endorsed by, or approved by the Japan Foundation or Japan Educational Exchanges and Services.'**
+  /// **'This app uses data from JMdict (CC-BY-SA 4.0) and Tatoeba (CC-BY 2.0).'**
   String get disclaimerText;
 
   /// No description provided for @privacyPolicy.
@@ -364,67 +364,67 @@ abstract class AppLocalizations {
   /// No description provided for @levelWords.
   ///
   /// In en, this message translates to:
-  /// **'{level} Words'**
+  /// **'{level}'**
   String levelWords(String level);
 
   /// No description provided for @n5.
   ///
   /// In en, this message translates to:
-  /// **'N5'**
+  /// **'Sounds'**
   String get n5;
 
   /// No description provided for @n5Desc.
   ///
   /// In en, this message translates to:
-  /// **'Beginner - 674 words'**
+  /// **'Sound words'**
   String get n5Desc;
 
   /// No description provided for @n4.
   ///
   /// In en, this message translates to:
-  /// **'N4'**
+  /// **'Motion'**
   String get n4;
 
   /// No description provided for @n4Desc.
   ///
   /// In en, this message translates to:
-  /// **'Elementary - 636 words'**
+  /// **'Movement words'**
   String get n4Desc;
 
   /// No description provided for @n3.
   ///
   /// In en, this message translates to:
-  /// **'N3'**
+  /// **'Emotion'**
   String get n3;
 
   /// No description provided for @n3Desc.
   ///
   /// In en, this message translates to:
-  /// **'Intermediate - 1,705 words'**
+  /// **'Feeling words'**
   String get n3Desc;
 
   /// No description provided for @n2.
   ///
   /// In en, this message translates to:
-  /// **'N2'**
+  /// **'State'**
   String get n2;
 
   /// No description provided for @n2Desc.
   ///
   /// In en, this message translates to:
-  /// **'Upper Intermediate - 1,200 words'**
+  /// **'Condition words'**
   String get n2Desc;
 
   /// No description provided for @n1.
   ///
   /// In en, this message translates to:
-  /// **'N1'**
+  /// **'Others'**
   String get n1;
 
   /// No description provided for @n1Desc.
   ///
   /// In en, this message translates to:
-  /// **'Advanced - 1,500 words'**
+  /// **'Other categories'**
   String get n1Desc;
 
   /// No description provided for @alphabetical.
@@ -526,7 +526,7 @@ abstract class AppLocalizations {
   /// No description provided for @keepPracticing.
   ///
   /// In en, this message translates to:
-  /// **'Keep practicing! You will improve!'**
+  /// **'Keep practicing!'**
   String get keepPracticing;
 
   /// No description provided for @levelA1.
@@ -562,13 +562,13 @@ abstract class AppLocalizations {
   /// No description provided for @privacyPolicyContent.
   ///
   /// In en, this message translates to:
-  /// **'This app does not collect, store, or share any personal information. Your learning progress and favorites are stored only on your device. No data is transmitted to external servers.'**
+  /// **'This app does not collect any personal information.'**
   String get privacyPolicyContent;
 
   /// No description provided for @restorePurchaseDesc.
   ///
   /// In en, this message translates to:
-  /// **'If you have previously purchased ad removal on another device or after reinstalling the app, tap here to restore your purchase.'**
+  /// **'Restore your previous purchase.'**
   String get restorePurchaseDesc;
 
   /// No description provided for @restoreComplete.
@@ -604,25 +604,25 @@ abstract class AppLocalizations {
   /// No description provided for @parenthesesExample.
   ///
   /// In en, this message translates to:
-  /// **'e.g. 食べ物 (たべもの)'**
+  /// **'e.g. ドキドキ (dokidoki)'**
   String get parenthesesExample;
 
   /// No description provided for @furiganaExample.
   ///
   /// In en, this message translates to:
-  /// **'Reading above kanji'**
+  /// **'Reading above word'**
   String get furiganaExample;
 
   /// No description provided for @showFuriganaInList.
   ///
   /// In en, this message translates to:
-  /// **'Show Furigana in Word List'**
+  /// **'Show Reading'**
   String get showFuriganaInList;
 
   /// No description provided for @showFuriganaInListDesc.
   ///
   /// In en, this message translates to:
-  /// **'Display reading above kanji in word list'**
+  /// **'Display reading in word list'**
   String get showFuriganaInListDesc;
 
   /// No description provided for @marketing.

@@ -1,8 +1,8 @@
-name: jlpt_vocab_app
-description: "JLPT Step N5?N3 - Master Japanese words for JLPT N5, N4, N3 levels"
+﻿name: onoma_step_app
+description: "Onoma Step - Master Japanese Onomatopoeia & Mimetic Words"
 publish_to: 'none'
 
-version: 1.0.2+26
+version: 1.0.0+1
 
 environment:
   sdk: ^3.7.0
@@ -63,7 +63,9 @@ flutter:
   uses-material-design: true
 
   assets:
-    - assets/data/words_n5_n3.json
+    - assets/data/onomatopoeia.json
+
+
 
 
 
