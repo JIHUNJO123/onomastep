@@ -1,4 +1,4 @@
-ï»¿import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:flip_card/flip_card.dart';
 import 'package:onoma_step_app/l10n/generated/app_localizations.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -31,8 +31,8 @@ class _WordListScreenState extends State<WordListScreen> {
   bool _isBannerAdLoaded = false;
   double _wordFontSize = 1.0;
   bool _showNativeLanguage = true;
-  bool _showBandBadge = true; // Band ë°°ì§€ í‘œì‹œ ì—¬ë¶€
-  // bool _showFuriganaInList = false; // í›„ë¦¬ê°€ë‚˜ ì œê±°ë¨
+  bool _showBandBadge = true; // Band ¹èÁö Ç¥½Ã ¿©ºÎ
+  // bool _showFuriganaInList = false; // ÈÄ¸®°¡³ª Á¦°ÅµÊ
 
   final ScrollController _listScrollController = ScrollController();
 
@@ -87,7 +87,7 @@ class _WordListScreenState extends State<WordListScreen> {
     final prefs = await SharedPreferences.getInstance();
     setState(() {
       _wordFontSize = prefs.getDouble('wordFontSize') ?? 1.0;
-      // _showFuriganaInList = DisplayService.instance.showFuriganaInList; // í›„ë¦¬ê°€ë‚˜ ì œê±°ë¨
+      // _showFuriganaInList = DisplayService.instance.showFuriganaInList; // ÈÄ¸®°¡³ª Á¦°ÅµÊ
     });
   }
 
@@ -166,7 +166,7 @@ class _WordListScreenState extends State<WordListScreen> {
     if (!translationService.needsTranslation) return;
     if (!mounted) return;
 
-    // ?ëŒì˜£ è¸°ë‰ë¿­ï§??ÑŠìŠœ (API ?ëª„í…§ ?ë†ì“¬)
+    // ?´ì¥ ë²ˆì—­ë§??¬ìš© (API ?¸ì¶œ ?†ìŒ)
     final langCode = translationService.currentLanguage;
     final embeddedDef = word.getEmbeddedTranslation(langCode, 'definition');
     final embeddedEx = word.getEmbeddedTranslation(langCode, 'example');
@@ -320,7 +320,7 @@ class _WordListScreenState extends State<WordListScreen> {
     if (widget.isFlashcardMode) {
       _savePosition(_currentFlashcardIndex);
     } else {
-      // ë¦¬ìŠ¤íŠ¸ ëª¨ë“œì—ì„œ ìŠ¤í¬ë¡¤ ìœ„ì¹˜ ì €ì¥
+      // ¸®½ºÆ® ¸ğµå¿¡¼­ ½ºÅ©·Ñ À§Ä¡ ÀúÀå
       if (_listScrollController.hasClients) {
         final itemIndex = (_listScrollController.offset / 80.0).round();
         _savePosition(itemIndex);
@@ -369,7 +369,7 @@ class _WordListScreenState extends State<WordListScreen> {
         ),
         centerTitle: true,
         actions: [
-          // Band è«›ê³—? ?ì’–ë–† ?ì¢‰? è¸°ê¾ªë“‰ (All Words ç”±ÑŠë’ª?ëª„ë¿‰?ì’•ì­”)
+          // Band ë°°ì? ?œì‹œ ? ê? ë²„íŠ¼ (All Words ë¦¬ìŠ¤?¸ì—?œë§Œ)
           if (widget.level == null &&
               !widget.isFlashcardMode &&
               _words.isNotEmpty)
@@ -385,7 +385,7 @@ class _WordListScreenState extends State<WordListScreen> {
                 });
               },
             ),
-          // Band filter button (All Words?Â€ Flashcard ï§â‘¤ë±¶ ï§â‘¤ëª¢?ë¨¯ê½Œ ?ÑŠìŠœ åª›Â€??
+          // Band filter button (All Words?€ Flashcard ëª¨ë“œ ëª¨ë‘?ì„œ ?¬ìš© ê°€??
           if (widget.level == null && _words.isNotEmpty)
             IconButton(
               icon: Icon(
@@ -534,7 +534,7 @@ class _WordListScreenState extends State<WordListScreen> {
                       ),
                     ),
                   ),
-                  // Band è«›ê³—?: All Words?ë¨¯ê½Œ ?ì¢‰? åª›Â€??
+                  // Band ë°°ì?: All Words?ì„œ ? ê? ê°€??
                   if (widget.level == null && _showBandBadge)
                     Container(
                       padding: const EdgeInsets.symmetric(

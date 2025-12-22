@@ -1,4 +1,4 @@
-import 'dart:ui' as ui;
+﻿import 'dart:ui' as ui;
 import 'package:shared_preferences/shared_preferences.dart';
 
 /// Supported language information
@@ -19,11 +19,12 @@ class TranslationService {
   static final TranslationService instance = TranslationService._init();
   TranslationService._init();
 
-  // Supported languages list - English, Korean, Chinese only
+  // Supported languages list - English, Korean, Chinese, Spanish
   static const List<SupportedLanguage> supportedLanguages = [
     SupportedLanguage(code: 'en', name: 'English', nativeName: 'English'),
     SupportedLanguage(code: 'ko', name: 'Korean', nativeName: '한국어'),
     SupportedLanguage(code: 'zh', name: 'Chinese', nativeName: '中文'),
+    SupportedLanguage(code: 'es', name: 'Spanish', nativeName: 'Español'),
   ];
 
   String _currentLanguage = 'en';
