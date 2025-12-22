@@ -127,6 +127,7 @@ class OnomaStepApp extends StatelessWidget {
         Locale('en'),
         Locale('ko'),
         Locale('zh'),
+          Locale('es'),
       ],
 
       theme: ThemeData(
