@@ -25,23 +25,125 @@ class _HomeScreenState extends State<HomeScreen> {
   bool _isLoading = true;
   bool _isBannerAdLoaded = false;
   String? _lastLanguage;
+  List<String> _categories = [];
 
-  // 의성어/의태어 카테고리
-  final List<Map<String, dynamic>> _categories = [
-    {'category': 'Sounds', 'icon': Icons.volume_up, 'color': Colors.blue},
-    {'category': 'Animal Sounds', 'icon': Icons.pets, 'color': Colors.green},
-    {'category': 'Motion', 'icon': Icons.directions_run, 'color': Colors.orange},
-    {'category': 'Emotion', 'icon': Icons.emoji_emotions, 'color': Colors.pink},
-    {'category': 'State', 'icon': Icons.auto_awesome, 'color': Colors.purple},
-    {'category': 'Eating', 'icon': Icons.restaurant, 'color': Colors.red},
-    {'category': 'Body', 'icon': Icons.accessibility, 'color': Colors.teal},
-    {'category': 'Others', 'icon': Icons.more_horiz, 'color': Colors.grey},
-  ];
+  // 카테고리 번역 함수
+  String _getLocalizedCategory(String category, AppLocalizations l10n) {
+    // 카테고리명을 키로 변환 (공백과 특수문자 제거)
+    final key = category.replaceAll(RegExp(r'[/\s]'), '');
+    
+    switch (key) {
+      case 'AnimalSounds': return l10n.cat_AnimalSounds;
+      case 'HumanSounds': return l10n.cat_HumanSounds;
+      case 'ImpactSounds': return l10n.cat_ImpactSounds;
+      case 'WaterLiquidSounds': return l10n.cat_WaterLiquidSounds;
+      case 'MechanicalSounds': return l10n.cat_MechanicalSounds;
+      case 'WindAirSounds': return l10n.cat_WindAirSounds;
+      case 'OtherSounds': return l10n.cat_OtherSounds;
+      case 'WalkingRunning': return l10n.cat_WalkingRunning;
+      case 'JumpingBouncing': return l10n.cat_JumpingBouncing;
+      case 'ShakingSwaying': return l10n.cat_ShakingSwaying;
+      case 'SpinningRolling': return l10n.cat_SpinningRolling;
+      case 'SlidingSlipping': return l10n.cat_SlidingSlipping;
+      case 'FastQuick': return l10n.cat_FastQuick;
+      case 'SlowLeisurely': return l10n.cat_SlowLeisurely;
+      case 'OtherMotion': return l10n.cat_OtherMotion;
+      case 'PositiveEmotions': return l10n.cat_PositiveEmotions;
+      case 'NegativeEmotions': return l10n.cat_NegativeEmotions;
+      case 'AnxietyNervousness': return l10n.cat_AnxietyNervousness;
+      case 'HeartbeatExcitement': return l10n.cat_HeartbeatExcitement;
+      case 'Confident': return l10n.cat_Confident;
+      case 'ShyHesitant': return l10n.cat_ShyHesitant;
+      case 'LazyCareless': return l10n.cat_LazyCareless;
+      case 'FatigueSleepiness': return l10n.cat_FatigueSleepiness;
+      case 'OtherEmotions': return l10n.cat_OtherEmotions;
+      case 'PainDiscomfort': return l10n.cat_PainDiscomfort;
+      case 'HungerFullness': return l10n.cat_HungerFullness;
+      case 'Chewing': return l10n.cat_Chewing;
+      case 'Drinking': return l10n.cat_Drinking;
+      case 'OtherEating': return l10n.cat_OtherEating;
+      case 'LightShine': return l10n.cat_LightShine;
+      case 'Temperature': return l10n.cat_Temperature;
+      case 'WetDry': return l10n.cat_WetDry;
+      case 'SoftHard': return l10n.cat_SoftHard;
+      case 'StickySlippery': return l10n.cat_StickySlippery;
+      case 'CleanMessy': return l10n.cat_CleanMessy;
+      case 'Shape': return l10n.cat_Shape;
+      case 'Size': return l10n.cat_Size;
+      case 'Abundance': return l10n.cat_Abundance;
+      case 'Scarcity': return l10n.cat_Scarcity;
+      case 'RainSnow': return l10n.cat_RainSnow;
+      case 'Wind': return l10n.cat_Wind;
+      case 'OtherWeather': return l10n.cat_OtherWeather;
+      case 'Others': return l10n.cat_Others;
+      default: return category;
+    }
+  }
+
+  // 카테고리별 아이콘 매핑
+  IconData _getCategoryIcon(String category) {
+    switch (category) {
+      case 'Animal Sounds': return Icons.pets;
+      case 'Human Sounds': return Icons.person;
+      case 'Impact Sounds': return Icons.sports_martial_arts;
+      case 'Water/Liquid Sounds': return Icons.water_drop;
+      case 'Mechanical Sounds': return Icons.settings;
+      case 'Wind/Air Sounds': return Icons.air;
+      case 'Other Sounds': return Icons.volume_up;
+      case 'Walking/Running': return Icons.directions_walk;
+      case 'Jumping/Bouncing': return Icons.sports_basketball;
+      case 'Shaking/Swaying': return Icons.vibration;
+      case 'Spinning/Rolling': return Icons.rotate_right;
+      case 'Sliding/Slipping': return Icons.sledding;
+      case 'Fast/Quick': return Icons.speed;
+      case 'Slow/Leisurely': return Icons.hourglass_bottom;
+      case 'Other Motion': return Icons.directions_run;
+      case 'Positive Emotions': return Icons.sentiment_very_satisfied;
+      case 'Negative Emotions': return Icons.sentiment_very_dissatisfied;
+      case 'Anxiety/Nervousness': return Icons.psychology;
+      case 'Heartbeat/Excitement': return Icons.favorite;
+      case 'Confident': return Icons.thumb_up;
+      case 'Shy/Hesitant': return Icons.face;
+      case 'Lazy/Careless': return Icons.weekend;
+      case 'Fatigue/Sleepiness': return Icons.hotel;
+      case 'Other Emotions': return Icons.emoji_emotions;
+      case 'Pain/Discomfort': return Icons.healing;
+      case 'Hunger/Fullness': return Icons.restaurant;
+      case 'Chewing': return Icons.dining;
+      case 'Drinking': return Icons.local_drink;
+      case 'Other Eating': return Icons.fastfood;
+      case 'Light/Shine': return Icons.wb_sunny;
+      case 'Temperature': return Icons.thermostat;
+      case 'Wet/Dry': return Icons.opacity;
+      case 'Soft/Hard': return Icons.layers;
+      case 'Sticky/Slippery': return Icons.water;
+      case 'Clean/Messy': return Icons.cleaning_services;
+      case 'Shape': return Icons.category;
+      case 'Size': return Icons.straighten;
+      case 'Abundance': return Icons.inventory;
+      case 'Scarcity': return Icons.remove_circle_outline;
+      case 'Rain/Snow': return Icons.umbrella;
+      case 'Wind': return Icons.wind_power;
+      case 'Other Weather': return Icons.cloud;
+      case 'Others': return Icons.more_horiz;
+      default: return Icons.label;
+    }
+  }
+
+  Color _getCategoryColor(int index) {
+    final colors = [
+      Colors.blue, Colors.green, Colors.orange, Colors.pink,
+      Colors.purple, Colors.red, Colors.teal, Colors.indigo,
+      Colors.amber, Colors.cyan, Colors.lime, Colors.deepOrange,
+    ];
+    return colors[index % colors.length];
+  }
 
   @override
   void initState() {
     super.initState();
     _loadTodayWord();
+    _loadCategories();
     _loadBannerAd();
   }
 
@@ -53,6 +155,15 @@ class _HomeScreenState extends State<HomeScreen> {
       _loadTodayWord();
     }
     _lastLanguage = currentLanguage;
+  }
+
+  Future<void> _loadCategories() async {
+    final categories = await DatabaseHelper.instance.getAllCategories();
+    if (mounted) {
+      setState(() {
+        _categories = categories;
+      });
+    }
   }
 
   Future<void> _loadBannerAd() async {
@@ -257,45 +368,22 @@ class _HomeScreenState extends State<HomeScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Container(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 12,
-                      vertical: 6,
-                    ),
-                    decoration: BoxDecoration(
-                      color: Colors.white.withAlpha((0.2 * 255).toInt()),
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    child: Text(
-                      "\u{1F4C5} ${l10n.todayWord}",
-                      style: const TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
+              Container(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 12,
+                  vertical: 6,
+                ),
+                decoration: BoxDecoration(
+                  color: Colors.white.withAlpha((0.2 * 255).toInt()),
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                child: Text(
+                  "\u{1F4C5} ${l10n.todayWord}",
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
                   ),
-                  Container(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 8,
-                      vertical: 4,
-                    ),
-                    decoration: BoxDecoration(
-                      color: Colors.white.withAlpha((0.2 * 255).toInt()),
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    child: Text(
-                      _todayWord!.category,
-                      style: const TextStyle(
-                        color: Colors.white,
-                        fontSize: 10,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                ],
+                ),
               ),
               const SizedBox(height: 20),
               Text(
@@ -444,13 +532,23 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Widget _buildCategoryCards() {
+    final l10n = AppLocalizations.of(context)!;
+    
+    if (_categories.isEmpty) {
+      return const Center(child: CircularProgressIndicator());
+    }
+
     return SizedBox(
       height: 100,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         itemCount: _categories.length,
         itemBuilder: (context, index) {
-          final cat = _categories[index];
+          final category = _categories[index];
+          final localizedCategory = _getLocalizedCategory(category, l10n);
+          final color = _getCategoryColor(index);
+          final icon = _getCategoryIcon(category);
+
           return Container(
             width: 100,
             margin: const EdgeInsets.only(right: 10),
@@ -464,9 +562,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => WordListScreen(
-                        level: cat['category'] as String,
-                      ),
+                      builder: (context) => WordListScreen(level: category),
                     ),
                   );
                 },
@@ -476,8 +572,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     borderRadius: BorderRadius.circular(12),
                     gradient: LinearGradient(
                       colors: [
-                        (cat['color'] as Color).withAlpha((0.8 * 255).toInt()),
-                        (cat['color'] as Color),
+                        color.withAlpha((0.8 * 255).toInt()),
+                        color,
                       ],
                       begin: Alignment.topLeft,
                       end: Alignment.bottomRight,
@@ -487,7 +583,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Icon(
-                        cat['icon'] as IconData,
+                        icon,
                         color: Colors.white,
                         size: 28,
                       ),
@@ -495,9 +591,9 @@ class _HomeScreenState extends State<HomeScreen> {
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 4),
                         child: Text(
-                          cat['category'] as String,
+                          localizedCategory,
                           style: const TextStyle(
-                            fontSize: 10,
+                            fontSize: 9,
                             fontWeight: FontWeight.bold,
                             color: Colors.white,
                           ),

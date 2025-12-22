@@ -63,7 +63,7 @@ class AppLocalizationsKo extends AppLocalizations {
   String get darkMode => '다크 모드';
 
   @override
-  String get fontSize => '글꼴 크기';
+  String get fontSize => '글자 크기';
 
   @override
   String get notifications => '알림';
@@ -81,7 +81,7 @@ class AppLocalizationsKo extends AppLocalizations {
   String get adsRemoved => '광고 제거됨';
 
   @override
-  String get thankYou => '후원해 주셔서 감사합니다!';
+  String get thankYou => '지원해 주셔서 감사합니다!';
 
   @override
   String get buy => '구매';
@@ -99,7 +99,7 @@ class AppLocalizationsKo extends AppLocalizations {
   String get loading => '로딩 중...';
 
   @override
-  String get notAvailable => '사용 불가';
+  String get notAvailable => '이용 불가';
 
   @override
   String get info => '정보';
@@ -108,10 +108,10 @@ class AppLocalizationsKo extends AppLocalizations {
   String get version => '버전';
 
   @override
-  String get disclaimer => '면책 조항';
+  String get disclaimer => '면책조항';
 
   @override
-  String get disclaimerText => '이 앱은 JMdict (CC-BY-SA 4.0) 및 Tatoeba (CC-BY 2.0) 데이터를 사용합니다.';
+  String get disclaimerText => '이 앱은 JMdict (CC-BY-SA 4.0)와 Tatoeba (CC-BY 2.0) 데이터를 사용합니다.';
 
   @override
   String get privacyPolicy => '개인정보 처리방침';
@@ -135,7 +135,7 @@ class AppLocalizationsKo extends AppLocalizations {
   String get wordDetail => '단어 상세';
 
   @override
-  String get definition => '뜻';
+  String get definition => '정의';
 
   @override
   String get example => '예문';
@@ -146,40 +146,10 @@ class AppLocalizationsKo extends AppLocalizations {
   }
 
   @override
-  String get n5 => '소리';
-
-  @override
-  String get n5Desc => '소리 관련 단어';
-
-  @override
-  String get n4 => '움직임';
-
-  @override
-  String get n4Desc => '동작 관련 단어';
-
-  @override
-  String get n3 => '감정';
-
-  @override
-  String get n3Desc => '감정 관련 단어';
-
-  @override
-  String get n2 => '상태';
-
-  @override
-  String get n2Desc => '상태 관련 단어';
-
-  @override
-  String get n1 => '기타';
-
-  @override
-  String get n1Desc => '기타 카테고리';
-
-  @override
   String get alphabetical => '가나다순';
 
   @override
-  String get random => '랜덤';
+  String get random => '무작위';
 
   @override
   String get tapToFlip => '탭하여 뒤집기';
@@ -209,37 +179,22 @@ class AppLocalizationsKo extends AppLocalizations {
   String get showResult => '결과 보기';
 
   @override
-  String get wordToMeaning => '단어  뜻';
+  String get wordToMeaning => '단어  의미';
 
   @override
-  String get meaningToWord => '뜻  단어';
+  String get meaningToWord => '의미  단어';
 
   @override
-  String get excellent => '완벽해요! 만점!';
+  String get excellent => '완벽해요!';
 
   @override
-  String get great => '잘했어요! 계속 화이팅!';
+  String get great => '잘했어요!';
 
   @override
   String get good => '좋아요! 계속 연습하세요!';
 
   @override
-  String get keepPracticing => '계속 연습하면 좋아져요!';
-
-  @override
-  String get levelA1 => '입문';
-
-  @override
-  String get levelA2 => '초급';
-
-  @override
-  String get levelB1 => '중급';
-
-  @override
-  String get levelB2 => '중상급';
-
-  @override
-  String get levelC1 => '고급';
+  String get keepPracticing => '계속 연습하세요!';
 
   @override
   String get privacyPolicyContent => '이 앱은 개인정보를 수집하지 않습니다.';
@@ -257,13 +212,13 @@ class AppLocalizationsKo extends AppLocalizations {
   String get furiganaDisplayMode => '읽기 표시';
 
   @override
-  String get parenthesesMode => '괄호';
+  String get parenthesesMode => '괄호 방식';
 
   @override
-  String get furiganaMode => '루비 스타일';
+  String get furiganaMode => '루비 방식';
 
   @override
-  String get parenthesesExample => '예: ドキドキ (두근두근)';
+  String get parenthesesExample => '예: ドキドキ (dokidoki)';
 
   @override
   String get furiganaExample => '단어 위에 읽기 표시';
@@ -279,4 +234,133 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get support => '지원';
+
+  @override
+  String get cat_Abundance => '풍부함';
+
+  @override
+  String get cat_AnimalSounds => '동물 소리';
+
+  @override
+  String get cat_AnxietyNervousness => '불안/긴장';
+
+  @override
+  String get cat_Chewing => '씹기';
+
+  @override
+  String get cat_CleanMessy => '깨끗함/지저분함';
+
+  @override
+  String get cat_Confident => '자신감';
+
+  @override
+  String get cat_Drinking => '마시기';
+
+  @override
+  String get cat_FastQuick => '빠름';
+
+  @override
+  String get cat_FatigueSleepiness => '피로/졸음';
+
+  @override
+  String get cat_HeartbeatExcitement => '심장박동/흥분';
+
+  @override
+  String get cat_HumanSounds => '사람 소리';
+
+  @override
+  String get cat_HungerFullness => '배고픔/배부름';
+
+  @override
+  String get cat_ImpactSounds => '충격 소리';
+
+  @override
+  String get cat_JumpingBouncing => '점프/튀기';
+
+  @override
+  String get cat_LazyCareless => '게으름';
+
+  @override
+  String get cat_LightShine => '빛/반짝임';
+
+  @override
+  String get cat_MechanicalSounds => '기계 소리';
+
+  @override
+  String get cat_NegativeEmotions => '부정적 감정';
+
+  @override
+  String get cat_OtherEating => '기타 먹기';
+
+  @override
+  String get cat_OtherEmotions => '기타 감정';
+
+  @override
+  String get cat_OtherMotion => '기타 동작';
+
+  @override
+  String get cat_OtherSounds => '기타 소리';
+
+  @override
+  String get cat_OtherWeather => '기타 날씨';
+
+  @override
+  String get cat_Others => '기타';
+
+  @override
+  String get cat_PainDiscomfort => '통증/불편함';
+
+  @override
+  String get cat_PositiveEmotions => '긍정적 감정';
+
+  @override
+  String get cat_RainSnow => '비/눈';
+
+  @override
+  String get cat_Scarcity => '부족함';
+
+  @override
+  String get cat_ShakingSwaying => '흔들림';
+
+  @override
+  String get cat_Shape => '모양';
+
+  @override
+  String get cat_ShyHesitant => '수줍음/망설임';
+
+  @override
+  String get cat_Size => '크기';
+
+  @override
+  String get cat_SlidingSlipping => '미끄러짐';
+
+  @override
+  String get cat_SlowLeisurely => '느림';
+
+  @override
+  String get cat_SoftHard => '부드러움/딱딱함';
+
+  @override
+  String get cat_SpinningRolling => '회전/구르기';
+
+  @override
+  String get cat_StickySlippery => '끈적임/미끌미끌';
+
+  @override
+  String get cat_Temperature => '온도';
+
+  @override
+  String get cat_WalkingRunning => '걷기/달리기';
+
+  @override
+  String get cat_WaterLiquidSounds => '물/액체 소리';
+
+  @override
+  String get cat_WetDry => '젖음/마름';
+
+  @override
+  String get cat_Wind => '바람';
+
+  @override
+  String get cat_WindAirSounds => '바람/공기 소리';
 }

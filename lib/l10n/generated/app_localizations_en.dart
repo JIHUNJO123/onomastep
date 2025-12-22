@@ -146,36 +146,6 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
-  String get n5 => 'Sounds';
-
-  @override
-  String get n5Desc => 'Sound words';
-
-  @override
-  String get n4 => 'Motion';
-
-  @override
-  String get n4Desc => 'Movement words';
-
-  @override
-  String get n3 => 'Emotion';
-
-  @override
-  String get n3Desc => 'Feeling words';
-
-  @override
-  String get n2 => 'State';
-
-  @override
-  String get n2Desc => 'Condition words';
-
-  @override
-  String get n1 => 'Others';
-
-  @override
-  String get n1Desc => 'Other categories';
-
-  @override
   String get alphabetical => 'Alphabetical';
 
   @override
@@ -227,21 +197,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get keepPracticing => 'Keep practicing!';
 
   @override
-  String get levelA1 => 'Beginner';
-
-  @override
-  String get levelA2 => 'Elementary';
-
-  @override
-  String get levelB1 => 'Intermediate';
-
-  @override
-  String get levelB2 => 'Upper Intermediate';
-
-  @override
-  String get levelC1 => 'Advanced';
-
-  @override
   String get privacyPolicyContent => 'This app does not collect any personal information.';
 
   @override
@@ -279,4 +234,133 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get support => 'Support';
+
+  @override
+  String get cat_Abundance => 'Abundance';
+
+  @override
+  String get cat_AnimalSounds => 'Animal Sounds';
+
+  @override
+  String get cat_AnxietyNervousness => 'Anxiety';
+
+  @override
+  String get cat_Chewing => 'Chewing';
+
+  @override
+  String get cat_CleanMessy => 'Clean/Messy';
+
+  @override
+  String get cat_Confident => 'Confident';
+
+  @override
+  String get cat_Drinking => 'Drinking';
+
+  @override
+  String get cat_FastQuick => 'Fast/Quick';
+
+  @override
+  String get cat_FatigueSleepiness => 'Fatigue';
+
+  @override
+  String get cat_HeartbeatExcitement => 'Heartbeat';
+
+  @override
+  String get cat_HumanSounds => 'Human Sounds';
+
+  @override
+  String get cat_HungerFullness => 'Hunger';
+
+  @override
+  String get cat_ImpactSounds => 'Impact Sounds';
+
+  @override
+  String get cat_JumpingBouncing => 'Jumping';
+
+  @override
+  String get cat_LazyCareless => 'Lazy';
+
+  @override
+  String get cat_LightShine => 'Light/Shine';
+
+  @override
+  String get cat_MechanicalSounds => 'Mechanical';
+
+  @override
+  String get cat_NegativeEmotions => 'Negative';
+
+  @override
+  String get cat_OtherEating => 'Other Eating';
+
+  @override
+  String get cat_OtherEmotions => 'Other Emotions';
+
+  @override
+  String get cat_OtherMotion => 'Other Motion';
+
+  @override
+  String get cat_OtherSounds => 'Other Sounds';
+
+  @override
+  String get cat_OtherWeather => 'Other Weather';
+
+  @override
+  String get cat_Others => 'Others';
+
+  @override
+  String get cat_PainDiscomfort => 'Pain';
+
+  @override
+  String get cat_PositiveEmotions => 'Positive';
+
+  @override
+  String get cat_RainSnow => 'Rain/Snow';
+
+  @override
+  String get cat_Scarcity => 'Scarcity';
+
+  @override
+  String get cat_ShakingSwaying => 'Shaking';
+
+  @override
+  String get cat_Shape => 'Shape';
+
+  @override
+  String get cat_ShyHesitant => 'Shy';
+
+  @override
+  String get cat_Size => 'Size';
+
+  @override
+  String get cat_SlidingSlipping => 'Sliding';
+
+  @override
+  String get cat_SlowLeisurely => 'Slow';
+
+  @override
+  String get cat_SoftHard => 'Soft/Hard';
+
+  @override
+  String get cat_SpinningRolling => 'Spinning';
+
+  @override
+  String get cat_StickySlippery => 'Sticky';
+
+  @override
+  String get cat_Temperature => 'Temperature';
+
+  @override
+  String get cat_WalkingRunning => 'Walking';
+
+  @override
+  String get cat_WaterLiquidSounds => 'Water';
+
+  @override
+  String get cat_WetDry => 'Wet/Dry';
+
+  @override
+  String get cat_Wind => 'Wind';
+
+  @override
+  String get cat_WindAirSounds => 'Wind/Air';
 }

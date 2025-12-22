@@ -12,7 +12,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get appTitle => 'Onoma Step';
 
   @override
-  String get todayWord => 'Palabra del Día';
+  String get todayWord => 'Palabra del día';
 
   @override
   String get learning => 'Aprendizaje';
@@ -21,7 +21,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get levelLearning => 'Categorías';
 
   @override
-  String get allWords => 'Todas las Palabras';
+  String get allWords => 'Todas';
 
   @override
   String get viewAllWords => 'Ver todas las onomatopeyas';
@@ -36,13 +36,13 @@ class AppLocalizationsEs extends AppLocalizations {
   String get flashcard => 'Tarjetas';
 
   @override
-  String get cardLearning => 'Aprendizaje con tarjetas';
+  String get cardLearning => 'Aprender con tarjetas';
 
   @override
-  String get quiz => 'Cuestionario';
+  String get quiz => 'Quiz';
 
   @override
-  String get testYourself => 'Pon a prueba tu conocimiento';
+  String get testYourself => 'Pon a prueba';
 
   @override
   String get settings => 'Ajustes';
@@ -51,34 +51,34 @@ class AppLocalizationsEs extends AppLocalizations {
   String get language => 'Idioma';
 
   @override
-  String get displayLanguage => 'Idioma de Visualización';
+  String get displayLanguage => 'Idioma de visualización';
 
   @override
-  String get selectLanguage => 'Seleccionar Idioma';
+  String get selectLanguage => 'Seleccionar idioma';
 
   @override
   String get display => 'Pantalla';
 
   @override
-  String get darkMode => 'Modo Oscuro';
+  String get darkMode => 'Modo oscuro';
 
   @override
-  String get fontSize => 'Tamaño de Fuente';
+  String get fontSize => 'Tamaño de fuente';
 
   @override
   String get notifications => 'Notificaciones';
 
   @override
-  String get dailyReminder => 'Recordatorio Diario';
+  String get dailyReminder => 'Recordatorio diario';
 
   @override
-  String get dailyReminderDesc => 'Recibe recordatorios para estudiar cada día';
+  String get dailyReminderDesc => 'Recibe recordatorios de estudio diarios';
 
   @override
-  String get removeAds => 'Eliminar Anuncios';
+  String get removeAds => 'Eliminar anuncios';
 
   @override
-  String get adsRemoved => 'Anuncios Eliminados';
+  String get adsRemoved => 'Anuncios eliminados';
 
   @override
   String get thankYou => 'Gracias por tu apoyo!';
@@ -87,7 +87,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get buy => 'Comprar';
 
   @override
-  String get restorePurchase => 'Restaurar Compra';
+  String get restorePurchase => 'Restaurar compra';
 
   @override
   String get restoring => 'Restaurando...';
@@ -108,13 +108,13 @@ class AppLocalizationsEs extends AppLocalizations {
   String get version => 'Versión';
 
   @override
-  String get disclaimer => 'Aviso Legal';
+  String get disclaimer => 'Aviso legal';
 
   @override
   String get disclaimerText => 'Esta app usa datos de JMdict (CC-BY-SA 4.0) y Tatoeba (CC-BY 2.0).';
 
   @override
-  String get privacyPolicy => 'Política de Privacidad';
+  String get privacyPolicy => 'Política de privacidad';
 
   @override
   String get cannotLoadWords => 'No se pueden cargar las palabras';
@@ -132,7 +132,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get removedFromFavorites => 'Eliminado de favoritos';
 
   @override
-  String get wordDetail => 'Detalle de Palabra';
+  String get wordDetail => 'Detalle de palabra';
 
   @override
   String get definition => 'Definición';
@@ -144,36 +144,6 @@ class AppLocalizationsEs extends AppLocalizations {
   String levelWords(String level) {
     return '$level';
   }
-
-  @override
-  String get n5 => 'Sonidos';
-
-  @override
-  String get n5Desc => 'Palabras de sonido';
-
-  @override
-  String get n4 => 'Movimiento';
-
-  @override
-  String get n4Desc => 'Palabras de movimiento';
-
-  @override
-  String get n3 => 'Emoción';
-
-  @override
-  String get n3Desc => 'Palabras de sentimiento';
-
-  @override
-  String get n2 => 'Estado';
-
-  @override
-  String get n2Desc => 'Palabras de condición';
-
-  @override
-  String get n1 => 'Otros';
-
-  @override
-  String get n1Desc => 'Otras categorías';
 
   @override
   String get alphabetical => 'Alfabético';
@@ -197,22 +167,22 @@ class AppLocalizationsEs extends AppLocalizations {
   String get score => 'Puntuación';
 
   @override
-  String get quizComplete => 'Cuestionario Completado!';
+  String get quizComplete => 'Quiz completado!';
 
   @override
-  String get finish => 'Terminar';
+  String get finish => 'Finalizar';
 
   @override
-  String get tryAgain => 'Intentar de Nuevo';
+  String get tryAgain => 'Intentar de nuevo';
 
   @override
-  String get showResult => 'Ver Resultado';
+  String get showResult => 'Ver resultado';
 
   @override
-  String get wordToMeaning => 'Palabra a Significado';
+  String get wordToMeaning => 'PalabraSignificado';
 
   @override
-  String get meaningToWord => 'Significado a Palabra';
+  String get meaningToWord => 'SignificadoPalabra';
 
   @override
   String get excellent => 'Excelente! Puntuación perfecta!';
@@ -221,62 +191,176 @@ class AppLocalizationsEs extends AppLocalizations {
   String get great => 'Muy bien! Sigue así!';
 
   @override
-  String get good => 'Buen esfuerzo! Sigue practicando!';
+  String get good => 'Buen trabajo! Sigue practicando!';
 
   @override
   String get keepPracticing => 'Sigue practicando!';
 
   @override
-  String get levelA1 => 'Principiante';
+  String get privacyPolicyContent => 'Esta app no recopila información personal.';
 
   @override
-  String get levelA2 => 'Elemental';
+  String get restorePurchaseDesc => 'Restaura compras anteriores.';
 
   @override
-  String get levelB1 => 'Intermedio';
+  String get restoreComplete => 'Restauración completada';
 
   @override
-  String get levelB2 => 'Intermedio Alto';
+  String get noPurchaseFound => 'No se encontró ninguna compra anterior';
 
   @override
-  String get levelC1 => 'Avanzado';
+  String get furiganaDisplayMode => 'Mostrar lectura';
 
   @override
-  String get privacyPolicyContent => 'Esta app no recopila ninguna información personal.';
+  String get parenthesesMode => 'Modo paréntesis';
 
   @override
-  String get restorePurchaseDesc => 'Restaura tu compra anterior.';
+  String get furiganaMode => 'Modo furigana';
 
   @override
-  String get restoreComplete => 'Restauración completa';
+  String get parenthesesExample => 'Ej: ドキドキ (dokidoki)';
 
   @override
-  String get noPurchaseFound => 'No se encontró compra anterior';
+  String get furiganaExample => 'La lectura aparece sobre la palabra';
 
   @override
-  String get furiganaDisplayMode => 'Mostrar Lectura';
+  String get showFuriganaInList => 'Mostrar lectura';
 
   @override
-  String get parenthesesMode => 'Paréntesis';
-
-  @override
-  String get furiganaMode => 'Estilo Ruby';
-
-  @override
-  String get parenthesesExample => 'ej. ドキドキ (dokidoki)';
-
-  @override
-  String get furiganaExample => 'Lectura sobre la palabra';
-
-  @override
-  String get showFuriganaInList => 'Mostrar Lectura';
-
-  @override
-  String get showFuriganaInListDesc => 'Mostrar lectura en lista de palabras';
+  String get showFuriganaInListDesc => 'Mostrar lectura en la lista';
 
   @override
   String get marketing => 'Marketing';
 
   @override
   String get support => 'Soporte';
+
+  @override
+  String get cat_Abundance => 'Abundancia';
+
+  @override
+  String get cat_AnimalSounds => 'Sonidos de animales';
+
+  @override
+  String get cat_AnxietyNervousness => 'Ansiedad/Nerviosismo';
+
+  @override
+  String get cat_Chewing => 'Masticar';
+
+  @override
+  String get cat_CleanMessy => 'Limpio/Desordenado';
+
+  @override
+  String get cat_Confident => 'Confiado';
+
+  @override
+  String get cat_Drinking => 'Beber';
+
+  @override
+  String get cat_FastQuick => 'Rápido';
+
+  @override
+  String get cat_FatigueSleepiness => 'Fatiga/Somnolencia';
+
+  @override
+  String get cat_HeartbeatExcitement => 'Latido/Emoción';
+
+  @override
+  String get cat_HumanSounds => 'Sonidos humanos';
+
+  @override
+  String get cat_HungerFullness => 'Hambre/Saciedad';
+
+  @override
+  String get cat_ImpactSounds => 'Sonidos de impacto';
+
+  @override
+  String get cat_JumpingBouncing => 'Saltar/Rebotar';
+
+  @override
+  String get cat_LazyCareless => 'Perezoso';
+
+  @override
+  String get cat_LightShine => 'Luz/Brillo';
+
+  @override
+  String get cat_MechanicalSounds => 'Sonidos mecánicos';
+
+  @override
+  String get cat_NegativeEmotions => 'Emociones negativas';
+
+  @override
+  String get cat_OtherEating => 'Otras comidas';
+
+  @override
+  String get cat_OtherEmotions => 'Otras emociones';
+
+  @override
+  String get cat_OtherMotion => 'Otros movimientos';
+
+  @override
+  String get cat_OtherSounds => 'Otros sonidos';
+
+  @override
+  String get cat_OtherWeather => 'Otro clima';
+
+  @override
+  String get cat_Others => 'Otros';
+
+  @override
+  String get cat_PainDiscomfort => 'Dolor/Malestar';
+
+  @override
+  String get cat_PositiveEmotions => 'Emociones positivas';
+
+  @override
+  String get cat_RainSnow => 'Lluvia/Nieve';
+
+  @override
+  String get cat_Scarcity => 'Escasez';
+
+  @override
+  String get cat_ShakingSwaying => 'Temblar/Balancear';
+
+  @override
+  String get cat_Shape => 'Forma';
+
+  @override
+  String get cat_ShyHesitant => 'Tímido/Vacilante';
+
+  @override
+  String get cat_Size => 'Tamaño';
+
+  @override
+  String get cat_SlidingSlipping => 'Deslizar';
+
+  @override
+  String get cat_SlowLeisurely => 'Lento';
+
+  @override
+  String get cat_SoftHard => 'Suave/Duro';
+
+  @override
+  String get cat_SpinningRolling => 'Girar/Rodar';
+
+  @override
+  String get cat_StickySlippery => 'Pegajoso/Resbaladizo';
+
+  @override
+  String get cat_Temperature => 'Temperatura';
+
+  @override
+  String get cat_WalkingRunning => 'Caminar/Correr';
+
+  @override
+  String get cat_WaterLiquidSounds => 'Sonidos de agua';
+
+  @override
+  String get cat_WetDry => 'Mojado/Seco';
+
+  @override
+  String get cat_Wind => 'Viento';
+
+  @override
+  String get cat_WindAirSounds => 'Sonidos de viento';
 }

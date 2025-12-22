@@ -38,7 +38,6 @@ class _QuizScreenState extends State<QuizScreen> {
   }
 
   Future<void> _loadWords() async {
-    // JSON?�서 ?�어 로드 (?�장 번역 ?�함)
     final jsonWords = await DatabaseHelper.instance.getWordsWithTranslations();
 
     List<Word> words;
@@ -50,17 +49,14 @@ class _QuizScreenState extends State<QuizScreen> {
 
     words.shuffle();
 
-    // Take quiz words first
     final quizWords = words.take(_totalQuestions).toList();
 
     final translationService = TranslationService.instance;
     await translationService.init();
     final langCode = translationService.currentLanguage;
 
-    // 모든 ?�어???�???�장 번역 로드 (?�답 ?�택지??번역?�어????
     if (translationService.needsTranslation) {
       for (var word in words) {
-        // ?�장 번역�??�인 (API ?�출 ?�음)
         final embeddedTranslation = word.getEmbeddedTranslation(
           langCode,
           'definition',
@@ -68,7 +64,6 @@ class _QuizScreenState extends State<QuizScreen> {
         if (embeddedTranslation != null && embeddedTranslation.isNotEmpty) {
           _translatedDefinitions[word.id] = embeddedTranslation;
         }
-        // ?�장 번역 ?�으�??�어 ?�본 ?�용 (API ?�출 ?�함 - ?�즈 ?�도 ?�선)
       }
     }
 
@@ -315,7 +310,7 @@ class _QuizScreenState extends State<QuizScreen> {
             ),
             const SizedBox(height: 24),
 
-            // Question Card
+            // Question Card - NO BADGE
             Card(
               elevation: 4,
               shape: RoundedRectangleBorder(
@@ -326,26 +321,6 @@ class _QuizScreenState extends State<QuizScreen> {
                 padding: const EdgeInsets.all(24),
                 child: Column(
                   children: [
-                    Container(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 12,
-                        vertical: 6,
-                      ),
-                      decoration: BoxDecoration(
-                        color: Theme.of(
-                          context,
-                        ).primaryColor.withAlpha((0.1 * 255).toInt()),
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      child: Text(
-                        currentWord.level,
-                        style: TextStyle(
-                          color: Theme.of(context).primaryColor,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                    const SizedBox(height: 16),
                     Text(
                       _quizType == QuizType.wordToMeaning
                           ? currentWord.getDisplayWord(displayMode: DisplayService.instance.displayMode)
@@ -445,4 +420,3 @@ class _QuizScreenState extends State<QuizScreen> {
     );
   }
 }
-

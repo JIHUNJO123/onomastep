@@ -369,66 +369,6 @@ abstract class AppLocalizations {
   /// **'{level}'**
   String levelWords(String level);
 
-  /// No description provided for @n5.
-  ///
-  /// In en, this message translates to:
-  /// **'Sounds'**
-  String get n5;
-
-  /// No description provided for @n5Desc.
-  ///
-  /// In en, this message translates to:
-  /// **'Sound words'**
-  String get n5Desc;
-
-  /// No description provided for @n4.
-  ///
-  /// In en, this message translates to:
-  /// **'Motion'**
-  String get n4;
-
-  /// No description provided for @n4Desc.
-  ///
-  /// In en, this message translates to:
-  /// **'Movement words'**
-  String get n4Desc;
-
-  /// No description provided for @n3.
-  ///
-  /// In en, this message translates to:
-  /// **'Emotion'**
-  String get n3;
-
-  /// No description provided for @n3Desc.
-  ///
-  /// In en, this message translates to:
-  /// **'Feeling words'**
-  String get n3Desc;
-
-  /// No description provided for @n2.
-  ///
-  /// In en, this message translates to:
-  /// **'State'**
-  String get n2;
-
-  /// No description provided for @n2Desc.
-  ///
-  /// In en, this message translates to:
-  /// **'Condition words'**
-  String get n2Desc;
-
-  /// No description provided for @n1.
-  ///
-  /// In en, this message translates to:
-  /// **'Others'**
-  String get n1;
-
-  /// No description provided for @n1Desc.
-  ///
-  /// In en, this message translates to:
-  /// **'Other categories'**
-  String get n1Desc;
-
   /// No description provided for @alphabetical.
   ///
   /// In en, this message translates to:
@@ -531,36 +471,6 @@ abstract class AppLocalizations {
   /// **'Keep practicing!'**
   String get keepPracticing;
 
-  /// No description provided for @levelA1.
-  ///
-  /// In en, this message translates to:
-  /// **'Beginner'**
-  String get levelA1;
-
-  /// No description provided for @levelA2.
-  ///
-  /// In en, this message translates to:
-  /// **'Elementary'**
-  String get levelA2;
-
-  /// No description provided for @levelB1.
-  ///
-  /// In en, this message translates to:
-  /// **'Intermediate'**
-  String get levelB1;
-
-  /// No description provided for @levelB2.
-  ///
-  /// In en, this message translates to:
-  /// **'Upper Intermediate'**
-  String get levelB2;
-
-  /// No description provided for @levelC1.
-  ///
-  /// In en, this message translates to:
-  /// **'Advanced'**
-  String get levelC1;
-
   /// No description provided for @privacyPolicyContent.
   ///
   /// In en, this message translates to:
@@ -638,6 +548,264 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Support'**
   String get support;
+
+  /// No description provided for @cat_Abundance.
+  ///
+  /// In en, this message translates to:
+  /// **'Abundance'**
+  String get cat_Abundance;
+
+  /// No description provided for @cat_AnimalSounds.
+  ///
+  /// In en, this message translates to:
+  /// **'Animal Sounds'**
+  String get cat_AnimalSounds;
+
+  /// No description provided for @cat_AnxietyNervousness.
+  ///
+  /// In en, this message translates to:
+  /// **'Anxiety'**
+  String get cat_AnxietyNervousness;
+
+  /// No description provided for @cat_Chewing.
+  ///
+  /// In en, this message translates to:
+  /// **'Chewing'**
+  String get cat_Chewing;
+
+  /// No description provided for @cat_CleanMessy.
+  ///
+  /// In en, this message translates to:
+  /// **'Clean/Messy'**
+  String get cat_CleanMessy;
+
+  /// No description provided for @cat_Confident.
+  ///
+  /// In en, this message translates to:
+  /// **'Confident'**
+  String get cat_Confident;
+
+  /// No description provided for @cat_Drinking.
+  ///
+  /// In en, this message translates to:
+  /// **'Drinking'**
+  String get cat_Drinking;
+
+  /// No description provided for @cat_FastQuick.
+  ///
+  /// In en, this message translates to:
+  /// **'Fast/Quick'**
+  String get cat_FastQuick;
+
+  /// No description provided for @cat_FatigueSleepiness.
+  ///
+  /// In en, this message translates to:
+  /// **'Fatigue'**
+  String get cat_FatigueSleepiness;
+
+  /// No description provided for @cat_HeartbeatExcitement.
+  ///
+  /// In en, this message translates to:
+  /// **'Heartbeat'**
+  String get cat_HeartbeatExcitement;
+
+  /// No description provided for @cat_HumanSounds.
+  ///
+  /// In en, this message translates to:
+  /// **'Human Sounds'**
+  String get cat_HumanSounds;
+
+  /// No description provided for @cat_HungerFullness.
+  ///
+  /// In en, this message translates to:
+  /// **'Hunger'**
+  String get cat_HungerFullness;
+
+  /// No description provided for @cat_ImpactSounds.
+  ///
+  /// In en, this message translates to:
+  /// **'Impact Sounds'**
+  String get cat_ImpactSounds;
+
+  /// No description provided for @cat_JumpingBouncing.
+  ///
+  /// In en, this message translates to:
+  /// **'Jumping'**
+  String get cat_JumpingBouncing;
+
+  /// No description provided for @cat_LazyCareless.
+  ///
+  /// In en, this message translates to:
+  /// **'Lazy'**
+  String get cat_LazyCareless;
+
+  /// No description provided for @cat_LightShine.
+  ///
+  /// In en, this message translates to:
+  /// **'Light/Shine'**
+  String get cat_LightShine;
+
+  /// No description provided for @cat_MechanicalSounds.
+  ///
+  /// In en, this message translates to:
+  /// **'Mechanical'**
+  String get cat_MechanicalSounds;
+
+  /// No description provided for @cat_NegativeEmotions.
+  ///
+  /// In en, this message translates to:
+  /// **'Negative'**
+  String get cat_NegativeEmotions;
+
+  /// No description provided for @cat_OtherEating.
+  ///
+  /// In en, this message translates to:
+  /// **'Other Eating'**
+  String get cat_OtherEating;
+
+  /// No description provided for @cat_OtherEmotions.
+  ///
+  /// In en, this message translates to:
+  /// **'Other Emotions'**
+  String get cat_OtherEmotions;
+
+  /// No description provided for @cat_OtherMotion.
+  ///
+  /// In en, this message translates to:
+  /// **'Other Motion'**
+  String get cat_OtherMotion;
+
+  /// No description provided for @cat_OtherSounds.
+  ///
+  /// In en, this message translates to:
+  /// **'Other Sounds'**
+  String get cat_OtherSounds;
+
+  /// No description provided for @cat_OtherWeather.
+  ///
+  /// In en, this message translates to:
+  /// **'Other Weather'**
+  String get cat_OtherWeather;
+
+  /// No description provided for @cat_Others.
+  ///
+  /// In en, this message translates to:
+  /// **'Others'**
+  String get cat_Others;
+
+  /// No description provided for @cat_PainDiscomfort.
+  ///
+  /// In en, this message translates to:
+  /// **'Pain'**
+  String get cat_PainDiscomfort;
+
+  /// No description provided for @cat_PositiveEmotions.
+  ///
+  /// In en, this message translates to:
+  /// **'Positive'**
+  String get cat_PositiveEmotions;
+
+  /// No description provided for @cat_RainSnow.
+  ///
+  /// In en, this message translates to:
+  /// **'Rain/Snow'**
+  String get cat_RainSnow;
+
+  /// No description provided for @cat_Scarcity.
+  ///
+  /// In en, this message translates to:
+  /// **'Scarcity'**
+  String get cat_Scarcity;
+
+  /// No description provided for @cat_ShakingSwaying.
+  ///
+  /// In en, this message translates to:
+  /// **'Shaking'**
+  String get cat_ShakingSwaying;
+
+  /// No description provided for @cat_Shape.
+  ///
+  /// In en, this message translates to:
+  /// **'Shape'**
+  String get cat_Shape;
+
+  /// No description provided for @cat_ShyHesitant.
+  ///
+  /// In en, this message translates to:
+  /// **'Shy'**
+  String get cat_ShyHesitant;
+
+  /// No description provided for @cat_Size.
+  ///
+  /// In en, this message translates to:
+  /// **'Size'**
+  String get cat_Size;
+
+  /// No description provided for @cat_SlidingSlipping.
+  ///
+  /// In en, this message translates to:
+  /// **'Sliding'**
+  String get cat_SlidingSlipping;
+
+  /// No description provided for @cat_SlowLeisurely.
+  ///
+  /// In en, this message translates to:
+  /// **'Slow'**
+  String get cat_SlowLeisurely;
+
+  /// No description provided for @cat_SoftHard.
+  ///
+  /// In en, this message translates to:
+  /// **'Soft/Hard'**
+  String get cat_SoftHard;
+
+  /// No description provided for @cat_SpinningRolling.
+  ///
+  /// In en, this message translates to:
+  /// **'Spinning'**
+  String get cat_SpinningRolling;
+
+  /// No description provided for @cat_StickySlippery.
+  ///
+  /// In en, this message translates to:
+  /// **'Sticky'**
+  String get cat_StickySlippery;
+
+  /// No description provided for @cat_Temperature.
+  ///
+  /// In en, this message translates to:
+  /// **'Temperature'**
+  String get cat_Temperature;
+
+  /// No description provided for @cat_WalkingRunning.
+  ///
+  /// In en, this message translates to:
+  /// **'Walking'**
+  String get cat_WalkingRunning;
+
+  /// No description provided for @cat_WaterLiquidSounds.
+  ///
+  /// In en, this message translates to:
+  /// **'Water'**
+  String get cat_WaterLiquidSounds;
+
+  /// No description provided for @cat_WetDry.
+  ///
+  /// In en, this message translates to:
+  /// **'Wet/Dry'**
+  String get cat_WetDry;
+
+  /// No description provided for @cat_Wind.
+  ///
+  /// In en, this message translates to:
+  /// **'Wind'**
+  String get cat_Wind;
+
+  /// No description provided for @cat_WindAirSounds.
+  ///
+  /// In en, this message translates to:
+  /// **'Wind/Air'**
+  String get cat_WindAirSounds;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

@@ -27,10 +27,10 @@ class AppLocalizationsZh extends AppLocalizations {
   String get viewAllWords => '查看所有拟声词';
 
   @override
-  String get favorites => '收藏夹';
+  String get favorites => '收藏';
 
   @override
-  String get savedWords => '已保存的单词';
+  String get savedWords => '已保存单词';
 
   @override
   String get flashcard => '闪卡';
@@ -72,7 +72,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get dailyReminder => '每日提醒';
 
   @override
-  String get dailyReminderDesc => '每天获取学习提醒';
+  String get dailyReminderDesc => '每天收到学习提醒';
 
   @override
   String get removeAds => '移除广告';
@@ -111,7 +111,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get disclaimer => '免责声明';
 
   @override
-  String get disclaimerText => '本应用使用JMdict (CC-BY-SA 4.0)和Tatoeba (CC-BY 2.0)数据。';
+  String get disclaimerText => '此应用使用JMdict (CC-BY-SA 4.0)和Tatoeba (CC-BY 2.0)数据。';
 
   @override
   String get privacyPolicy => '隐私政策';
@@ -120,22 +120,22 @@ class AppLocalizationsZh extends AppLocalizations {
   String get cannotLoadWords => '无法加载单词';
 
   @override
-  String get noFavoritesYet => '暂无收藏';
+  String get noFavoritesYet => '还没有收藏';
 
   @override
-  String get tapHeartToSave => '点击心形图标收藏单词';
+  String get tapHeartToSave => '点击心形图标保存单词';
 
   @override
-  String get addedToFavorites => '已添加到收藏夹';
+  String get addedToFavorites => '已添加到收藏';
 
   @override
-  String get removedFromFavorites => '已从收藏夹移除';
+  String get removedFromFavorites => '已从收藏移除';
 
   @override
   String get wordDetail => '单词详情';
 
   @override
-  String get definition => '释义';
+  String get definition => '定义';
 
   @override
   String get example => '例句';
@@ -146,37 +146,7 @@ class AppLocalizationsZh extends AppLocalizations {
   }
 
   @override
-  String get n5 => '声音';
-
-  @override
-  String get n5Desc => '声音相关词汇';
-
-  @override
-  String get n4 => '动作';
-
-  @override
-  String get n4Desc => '动作相关词汇';
-
-  @override
-  String get n3 => '情感';
-
-  @override
-  String get n3Desc => '情感相关词汇';
-
-  @override
-  String get n2 => '状态';
-
-  @override
-  String get n2Desc => '状态相关词汇';
-
-  @override
-  String get n1 => '其他';
-
-  @override
-  String get n1Desc => '其他分类';
-
-  @override
-  String get alphabetical => '按字母顺序';
+  String get alphabetical => '字母顺序';
 
   @override
   String get random => '随机';
@@ -209,10 +179,10 @@ class AppLocalizationsZh extends AppLocalizations {
   String get showResult => '查看结果';
 
   @override
-  String get wordToMeaning => '词义';
+  String get wordToMeaning => '单词意思';
 
   @override
-  String get meaningToWord => '义词';
+  String get meaningToWord => '意思单词';
 
   @override
   String get excellent => '太棒了！满分！';
@@ -224,59 +194,173 @@ class AppLocalizationsZh extends AppLocalizations {
   String get good => '不错！继续练习！';
 
   @override
-  String get keepPracticing => '继续练习会进步的！';
+  String get keepPracticing => '继续练习！';
 
   @override
-  String get levelA1 => '入门';
+  String get privacyPolicyContent => '此应用不收集任何个人信息。';
 
   @override
-  String get levelA2 => '初级';
-
-  @override
-  String get levelB1 => '中级';
-
-  @override
-  String get levelB2 => '中高级';
-
-  @override
-  String get levelC1 => '高级';
-
-  @override
-  String get privacyPolicyContent => '本应用不收集任何个人信息。';
-
-  @override
-  String get restorePurchaseDesc => '恢复您之前的购买。';
+  String get restorePurchaseDesc => '恢复之前的购买。';
 
   @override
   String get restoreComplete => '恢复完成';
 
   @override
-  String get noPurchaseFound => '未找到之前的购买记录';
+  String get noPurchaseFound => '未找到之前的购买';
 
   @override
   String get furiganaDisplayMode => '读音显示';
 
   @override
-  String get parenthesesMode => '括号';
+  String get parenthesesMode => '括号方式';
 
   @override
-  String get furiganaMode => '注音样式';
+  String get furiganaMode => '注音方式';
 
   @override
-  String get parenthesesExample => '例：ドキドキ（心跳声）';
+  String get parenthesesExample => '例：ドキドキ (dokidoki)';
 
   @override
-  String get furiganaExample => '词上方显示读音';
+  String get furiganaExample => '单词上方显示读音';
 
   @override
   String get showFuriganaInList => '显示读音';
 
   @override
-  String get showFuriganaInListDesc => '在单词列表中显示读音';
+  String get showFuriganaInListDesc => '在列表中显示读音';
 
   @override
   String get marketing => '营销';
 
   @override
   String get support => '支持';
+
+  @override
+  String get cat_Abundance => '丰富';
+
+  @override
+  String get cat_AnimalSounds => '动物声音';
+
+  @override
+  String get cat_AnxietyNervousness => '焦虑/紧张';
+
+  @override
+  String get cat_Chewing => '咀嚼';
+
+  @override
+  String get cat_CleanMessy => '干净/杂乱';
+
+  @override
+  String get cat_Confident => '自信';
+
+  @override
+  String get cat_Drinking => '喝';
+
+  @override
+  String get cat_FastQuick => '快速';
+
+  @override
+  String get cat_FatigueSleepiness => '疲劳/困倦';
+
+  @override
+  String get cat_HeartbeatExcitement => '心跳/兴奋';
+
+  @override
+  String get cat_HumanSounds => '人声';
+
+  @override
+  String get cat_HungerFullness => '饥饿/饱腹';
+
+  @override
+  String get cat_ImpactSounds => '撞击声';
+
+  @override
+  String get cat_JumpingBouncing => '跳跃/弹跳';
+
+  @override
+  String get cat_LazyCareless => '懒惰';
+
+  @override
+  String get cat_LightShine => '光/闪耀';
+
+  @override
+  String get cat_MechanicalSounds => '机械声';
+
+  @override
+  String get cat_NegativeEmotions => '消极情绪';
+
+  @override
+  String get cat_OtherEating => '其他进食';
+
+  @override
+  String get cat_OtherEmotions => '其他情绪';
+
+  @override
+  String get cat_OtherMotion => '其他动作';
+
+  @override
+  String get cat_OtherSounds => '其他声音';
+
+  @override
+  String get cat_OtherWeather => '其他天气';
+
+  @override
+  String get cat_Others => '其他';
+
+  @override
+  String get cat_PainDiscomfort => '疼痛/不适';
+
+  @override
+  String get cat_PositiveEmotions => '积极情绪';
+
+  @override
+  String get cat_RainSnow => '雨/雪';
+
+  @override
+  String get cat_Scarcity => '稀缺';
+
+  @override
+  String get cat_ShakingSwaying => '摇晃';
+
+  @override
+  String get cat_Shape => '形状';
+
+  @override
+  String get cat_ShyHesitant => '害羞/犹豫';
+
+  @override
+  String get cat_Size => '大小';
+
+  @override
+  String get cat_SlidingSlipping => '滑动';
+
+  @override
+  String get cat_SlowLeisurely => '缓慢';
+
+  @override
+  String get cat_SoftHard => '软/硬';
+
+  @override
+  String get cat_SpinningRolling => '旋转/滚动';
+
+  @override
+  String get cat_StickySlippery => '粘/滑';
+
+  @override
+  String get cat_Temperature => '温度';
+
+  @override
+  String get cat_WalkingRunning => '走/跑';
+
+  @override
+  String get cat_WaterLiquidSounds => '水/液体声';
+
+  @override
+  String get cat_WetDry => '湿/干';
+
+  @override
+  String get cat_Wind => '风';
+
+  @override
+  String get cat_WindAirSounds => '风/空气声';
 }

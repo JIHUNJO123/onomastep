@@ -22,7 +22,7 @@ class DatabaseHelper {
 
     return await openDatabase(
       path,
-      version: 1,
+      version: 2,
       onCreate: _createDB,
       onUpgrade: _upgradeDB,
     );
@@ -84,16 +84,18 @@ class DatabaseHelper {
           for (var wordJson in data) {
             Map<String, dynamic>? translationsMap;
 
+            // Format 1: translations object
             if (wordJson['translations'] != null) {
               translationsMap = Map<String, dynamic>.from(
                 wordJson['translations'],
               );
             }
 
+            // Format 2: definition_ko, example_ko format
             final langCodes = ['ko', 'zh', 'es', 'fr', 'de', 'pt', 'vi', 'ar', 'th', 'ru'];
             for (final lang in langCodes) {
-              final defKey = 'definition_' + lang;
-              final exKey = 'example_' + lang;
+              final defKey = 'definition_$lang';
+              final exKey = 'example_$lang';
               if (wordJson[defKey] != null || wordJson[exKey] != null) {
                 translationsMap ??= {};
                 translationsMap[lang] = {
@@ -101,6 +103,29 @@ class DatabaseHelper {
                   'example': wordJson[exKey]?.toString() ?? '',
                 };
               }
+            }
+
+            // Format 3: korean, chinese, spanish fields (Onomatopoeia JSON format)
+            if (wordJson['korean'] != null) {
+              translationsMap ??= {};
+              translationsMap['ko'] = {
+                'definition': wordJson['korean']?.toString() ?? '',
+                'example': wordJson['example_ko']?.toString() ?? '',
+              };
+            }
+            if (wordJson['chinese'] != null) {
+              translationsMap ??= {};
+              translationsMap['zh'] = {
+                'definition': wordJson['chinese']?.toString() ?? '',
+                'example': wordJson['example_zh']?.toString() ?? '',
+              };
+            }
+            if (wordJson['spanish'] != null) {
+              translationsMap ??= {};
+              translationsMap['es'] = {
+                'definition': wordJson['spanish']?.toString() ?? '',
+                'example': wordJson['example_es']?.toString() ?? '',
+              };
             }
 
             String? translationsJson;
@@ -123,14 +148,14 @@ class DatabaseHelper {
             });
           }
           totalWords += data.length;
-          print('Loaded ' + data.length.toString() + ' words from ' + filePath);
+          print('Loaded $totalWords words with translations from $filePath');
         } catch (e) {
-          print('Error loading ' + filePath + ': ' + e.toString());
+          print('Error loading $filePath: $e');
         }
       }
-      print('Loaded total ' + totalWords.toString() + ' onomatopoeia words');
+      print('Loaded total $totalWords onomatopoeia words');
     } catch (e) {
-      print('Error loading initial data: ' + e.toString());
+      print('Error loading initial data: $e');
     }
   }
 
@@ -234,7 +259,7 @@ class DatabaseHelper {
     final result = await db.query(
       'words',
       where: 'word LIKE ? OR definition LIKE ? OR hiragana LIKE ?',
-      whereArgs: ['%' + query + '%', '%' + query + '%', '%' + query + '%'],
+      whereArgs: ['%$query%', '%$query%', '%$query%'],
       orderBy: 'word ASC',
     );
     return result.map((json) => Word.fromDb(json)).toList();
@@ -279,22 +304,22 @@ class DatabaseHelper {
 
       for (final file in jsonFiles) {
         try {
-          print('Loading JSON file: ' + file);
+          print('Loading JSON file: $file');
           final String response = await rootBundle.loadString(file);
           final List<dynamic> data = json.decode(response);
           final words = data.map((json) => Word.fromJson(json)).toList();
-          print('  Loaded ' + words.length.toString() + ' words from ' + file);
+          print('  Loaded ${words.length} words from $file');
           allWords.addAll(words);
         } catch (e) {
-          print('Error loading ' + file + ': ' + e.toString());
+          print('Error loading $file: $e');
         }
       }
 
-      print('Total JSON words loaded: ' + allWords.length.toString());
+      print('Total JSON words loaded: ${allWords.length}');
       _jsonWordsCache = allWords;
       return allWords;
     } catch (e) {
-      print('Error loading JSON words: ' + e.toString());
+      print('Error loading JSON words: $e');
       return [];
     }
   }
@@ -355,7 +380,7 @@ class DatabaseHelper {
       final finalWord = jsonWord ?? dbWord;
       return dbWord.copyWith(translations: finalWord.translations);
     } catch (e) {
-      print('Error getting today word: ' + e.toString());
+      print('Error getting today word: $e');
       return null;
     }
   }
