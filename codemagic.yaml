@@ -1,4 +1,4 @@
-workflows:
+﻿workflows:
   ios-workflow:
     name: iOS Release
     max_build_duration: 120
@@ -8,9 +8,9 @@ workflows:
     environment:
       ios_signing:
         distribution_type: app_store
-        bundle_identifier: com.jlptstep.n5n3
+        bundle_identifier: com.jhuni.onomastep
       vars:
-        APP_ID: 6740526152
+        APP_ID: 0000000000
       flutter: stable
       xcode: latest
       cocoapods: default
@@ -27,8 +27,8 @@ workflows:
       - name: Flutter build ipa
         script: |
           flutter build ipa --release \
-            --build-name=1.0.2 \
-            --build-number=25 \
+            --build-name=1.0.0 \
+            --build-number=1 \
             --export-options-plist=/Users/builder/export_options.plist
     artifacts:
       - build/ios/ipa/*.ipa
@@ -37,7 +37,7 @@ workflows:
     publishing:
       email:
         recipients:
-          - jhunijo@gmail.com
+          - jihun.jo@yahoo.com
         notify:
           success: true
           failure: true
@@ -45,3 +45,36 @@ workflows:
         auth: integration
         submit_to_testflight: true
         submit_to_app_store: false
+
+  android-workflow:
+    name: Android Release
+    max_build_duration: 60
+    instance_type: mac_mini_m2
+    environment:
+      android_signing:
+        - onoma_keystore
+      groups:
+        - google_play
+      flutter: stable
+    scripts:
+      - name: Get Flutter packages
+        script: |
+          flutter packages pub get
+      - name: Build AAB
+        script: |
+          flutter build appbundle --release \
+            --build-name=1.0.0 \
+            --build-number=1
+    artifacts:
+      - build/app/outputs/bundle/release/*.aab
+    publishing:
+      email:
+        recipients:
+          - jihun.jo@yahoo.com
+        notify:
+          success: true
+          failure: true
+      google_play:
+        credentials: $GCLOUD_SERVICE_ACCOUNT_CREDENTIALS
+        track: production
+        submit_as_draft: true
