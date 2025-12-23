@@ -6,8 +6,15 @@ import '../services/translation_service.dart';
 
 class WordDetailScreen extends StatefulWidget {
   final Word word;
+  final List<Word>? wordList;
+  final int? currentIndex;
 
-  const WordDetailScreen({super.key, required this.word});
+  const WordDetailScreen({
+    super.key,
+    required this.word,
+    this.wordList,
+    this.currentIndex,
+  });
 
   @override
   State<WordDetailScreen> createState() => _WordDetailScreenState();
@@ -15,6 +22,7 @@ class WordDetailScreen extends StatefulWidget {
 
 class _WordDetailScreenState extends State<WordDetailScreen> {
   late Word _word;
+  late int _currentIndex;
   String? _translatedDefinition;
   String? _translatedExample;
 
@@ -22,7 +30,38 @@ class _WordDetailScreenState extends State<WordDetailScreen> {
   void initState() {
     super.initState();
     _word = widget.word;
+    _currentIndex = widget.currentIndex ?? 0;
     _loadTranslations();
+  }
+
+  bool get _hasNavigation =>
+      widget.wordList != null && widget.wordList!.length > 1;
+  bool get _canGoPrevious => _hasNavigation && _currentIndex > 0;
+  bool get _canGoNext =>
+      _hasNavigation && _currentIndex < widget.wordList!.length - 1;
+
+  void _goToPrevious() {
+    if (_canGoPrevious) {
+      setState(() {
+        _currentIndex--;
+        _word = widget.wordList![_currentIndex];
+        _translatedDefinition = null;
+        _translatedExample = null;
+      });
+      _loadTranslations();
+    }
+  }
+
+  void _goToNext() {
+    if (_canGoNext) {
+      setState(() {
+        _currentIndex++;
+        _word = widget.wordList![_currentIndex];
+        _translatedDefinition = null;
+        _translatedExample = null;
+      });
+      _loadTranslations();
+    }
   }
 
   Future<void> _loadTranslations() async {
@@ -68,84 +107,135 @@ class _WordDetailScreenState extends State<WordDetailScreen> {
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
 
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(l10n.wordDetail),
-        actions: [
-          IconButton(
-            icon: Icon(
-              _word.isFavorite ? Icons.favorite : Icons.favorite_border,
-              color: _word.isFavorite ? Colors.red : null,
-            ),
-            onPressed: _toggleFavorite,
+    return PopScope(
+      canPop: false,
+      onPopInvokedWithResult: (didPop, result) {
+        if (didPop) return;
+        Navigator.of(context).pop(_currentIndex);
+      },
+      child: Scaffold(
+        appBar: AppBar(
+          leading: IconButton(
+            icon: const Icon(Icons.arrow_back),
+            onPressed: () => Navigator.of(context).pop(_currentIndex),
           ),
-        ],
-      ),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            // Header Card - no badges
-            Card(
-              elevation: 4,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(16),
+          title: Text(
+            _hasNavigation
+                ? '${_currentIndex + 1} / ${widget.wordList!.length}'
+                : l10n.wordDetail,
+          ),
+          actions: [
+            IconButton(
+              icon: Icon(
+                _word.isFavorite ? Icons.favorite : Icons.favorite_border,
+                color: _word.isFavorite ? Colors.red : null,
               ),
-              child: Container(
-                width: double.infinity,
-                padding: const EdgeInsets.all(24.0),
-                decoration: BoxDecoration(
+              onPressed: _toggleFavorite,
+            ),
+          ],
+        ),
+        body: SingleChildScrollView(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // Header Card - no badges
+              Card(
+                elevation: 4,
+                shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(16),
-                  gradient: LinearGradient(
-                    colors: [
-                      Theme.of(context).primaryColor,
-                      Theme.of(context).primaryColor.withAlpha((0.7 * 255).toInt()),
+                ),
+                child: Container(
+                  width: double.infinity,
+                  padding: const EdgeInsets.all(24.0),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(16),
+                    gradient: LinearGradient(
+                      colors: [
+                        Theme.of(context).primaryColor,
+                        Theme.of(
+                          context,
+                        ).primaryColor.withAlpha((0.7 * 255).toInt()),
+                      ],
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                    ),
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Text(
+                        _word.hiragana != null &&
+                                _word.hiragana!.isNotEmpty &&
+                                _word.word != _word.hiragana
+                            ? '${_word.word}(${_word.hiragana})'
+                            : _word.word,
+                        style: const TextStyle(
+                          fontSize: 32,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
                     ],
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
                   ),
                 ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
+              ),
+              const SizedBox(height: 24),
+
+              // Definition Section
+              _buildDefinitionSection(
+                title: l10n.definition,
+                icon: Icons.book,
+                content: _word.definition,
+                translation: _translatedDefinition,
+              ),
+              const SizedBox(height: 16),
+
+              // Example Section
+              if (_word.example.isNotEmpty)
+                _buildExampleSection(
+                  title: l10n.example,
+                  icon: Icons.format_quote,
+                  content: _word.example,
+                  translation: _translatedExample,
+                ),
+              // Navigation buttons at bottom
+              if (_hasNavigation) ...[
+                const SizedBox(height: 24),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
-                      _word.hiragana != null &&
-                              _word.hiragana!.isNotEmpty &&
-                              _word.word != _word.hiragana
-                          ? '${_word.word}(${_word.hiragana})'
-                          : _word.word,
-                      style: const TextStyle(
-                        fontSize: 32,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
+                    ElevatedButton.icon(
+                      onPressed: _currentIndex > 0 ? _goToPrevious : null,
+                      icon: const Icon(Icons.arrow_back),
+                      label: Text(l10n.previous),
+                      style: ElevatedButton.styleFrom(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 20,
+                          vertical: 12,
+                        ),
                       ),
-                      textAlign: TextAlign.center,
+                    ),
+                    ElevatedButton.icon(
+                      onPressed:
+                          _currentIndex < widget.wordList!.length - 1
+                              ? _goToNext
+                              : null,
+                      icon: const Icon(Icons.arrow_forward),
+                      label: Text(l10n.next),
+                      style: ElevatedButton.styleFrom(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 20,
+                          vertical: 12,
+                        ),
+                      ),
                     ),
                   ],
                 ),
-              ),
-            ),
-            const SizedBox(height: 24),
-
-            // Definition Section
-            _buildDefinitionSection(
-              title: l10n.definition,
-              icon: Icons.book,
-              content: _word.definition,
-              translation: _translatedDefinition,
-            ),
-            const SizedBox(height: 16),
-
-            // Example Section
-            if (_word.example.isNotEmpty)
-              _buildExampleSection(
-                title: l10n.example,
-                icon: Icons.format_quote,
-                content: _word.example,
-                translation: _translatedExample,
-              ),
-          ],
+              ],
+            ],
+          ),
         ),
       ),
     );

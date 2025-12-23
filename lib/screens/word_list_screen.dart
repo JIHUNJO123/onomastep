@@ -381,13 +381,28 @@ class _WordListScreenState extends State<WordListScreen> {
           return Card(
             margin: const EdgeInsets.only(bottom: 12),
             child: ListTile(
-              onTap: () {
-                Navigator.push(
+              onTap: () async {
+                final result = await Navigator.push<int>(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => WordDetailScreen(word: word),
+                    builder:
+                        (context) => WordDetailScreen(
+                          word: word,
+                          wordList: List<Word>.from(_words),
+                          currentIndex: index,
+                        ),
                   ),
                 );
+                if (result != null && result != index && mounted) {
+                  final targetOffset = result * 80.0;
+                  if (_listScrollController.hasClients) {
+                    _listScrollController.animateTo(
+                      targetOffset,
+                      duration: const Duration(milliseconds: 300),
+                      curve: Curves.easeInOut,
+                    );
+                  }
+                }
               },
               title: Text(
                 word.getDisplayWord(
@@ -477,7 +492,9 @@ class _WordListScreenState extends State<WordListScreen> {
                         gradient: LinearGradient(
                           colors: [
                             Theme.of(context).primaryColor,
-                            Theme.of(context).primaryColor.withAlpha((0.7 * 255).toInt()),
+                            Theme.of(
+                              context,
+                            ).primaryColor.withAlpha((0.7 * 255).toInt()),
                           ],
                           begin: Alignment.topLeft,
                           end: Alignment.bottomRight,
