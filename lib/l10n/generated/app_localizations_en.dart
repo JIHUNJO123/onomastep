@@ -363,4 +363,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get cat_WindAirSounds => 'Wind/Air';
+
+  @override
+  String get cancel => 'Cancel';
 }

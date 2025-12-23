@@ -13,8 +13,14 @@ import 'word_detail_screen.dart';
 class WordListScreen extends StatefulWidget {
   final String? level;
   final bool isFlashcardMode;
+  final bool favoritesOnly;
 
-  const WordListScreen({super.key, this.level, this.isFlashcardMode = false});
+  const WordListScreen({
+    super.key,
+    this.level,
+    this.isFlashcardMode = false,
+    this.favoritesOnly = false,
+  });
 
   @override
   State<WordListScreen> createState() => _WordListScreenState();
@@ -106,7 +112,9 @@ class _WordListScreenState extends State<WordListScreen> {
 
   Future<void> _loadWords() async {
     List<Word> words;
-    if (widget.level != null) {
+    if (widget.favoritesOnly) {
+      words = await DatabaseHelper.instance.getFavorites();
+    } else if (widget.level != null) {
       // category로 검색
       words = await DatabaseHelper.instance.getWordsByCategory(widget.level!);
     } else {

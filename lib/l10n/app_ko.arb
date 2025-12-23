@@ -122,5 +122,6 @@
   "cat_WaterLiquidSounds": "물/액체 소리",
   "cat_WetDry": "젖음/마름",
   "cat_Wind": "바람",
-  "cat_WindAirSounds": "바람/공기 소리"
+  "cat_WindAirSounds": "바람/공기 소리",
+  "cancel": "취소"
 }

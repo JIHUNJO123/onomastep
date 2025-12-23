@@ -363,4 +363,7 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get cat_WindAirSounds => '바람/공기 소리';
+
+  @override
+  String get cancel => '취소';
 }

@@ -122,5 +122,6 @@
   "cat_WaterLiquidSounds": "Sonidos de agua",
   "cat_WetDry": "Mojado/Seco",
   "cat_Wind": "Viento",
-  "cat_WindAirSounds": "Sonidos de viento"
+  "cat_WindAirSounds": "Sonidos de viento",
+  "cancel": "Cancelar"
 }

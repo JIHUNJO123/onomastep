@@ -122,5 +122,6 @@
   "cat_WaterLiquidSounds": "水/液体声",
   "cat_WetDry": "湿/干",
   "cat_Wind": "风",
-  "cat_WindAirSounds": "风/空气声"
+  "cat_WindAirSounds": "风/空气声",
+  "cancel": "取消"
 }

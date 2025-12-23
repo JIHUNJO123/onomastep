@@ -806,6 +806,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Wind/Air'**
   String get cat_WindAirSounds;
+
+  /// No description provided for @cancel.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get cancel;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

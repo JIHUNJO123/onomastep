@@ -363,4 +363,7 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get cat_WindAirSounds => '风/空气声';
+
+  @override
+  String get cancel => '取消';
 }
