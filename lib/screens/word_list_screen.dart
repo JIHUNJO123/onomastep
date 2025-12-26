@@ -2,7 +2,6 @@
 import 'package:flip_card/flip_card.dart';
 import 'package:onoma_step_app/l10n/generated/app_localizations.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:google_mobile_ads/google_mobile_ads.dart';
 import '../db/database_helper.dart';
 import '../models/word.dart';
 import '../services/translation_service.dart';
@@ -33,7 +32,6 @@ class _WordListScreenState extends State<WordListScreen> {
   int _currentFlashcardIndex = 0;
   late PageController _pageController;
   String _sortOrder = 'alphabetical';
-  bool _isBannerAdLoaded = false;
   double _wordFontSize = 1.0;
   bool _showNativeLanguage = true;
 
@@ -50,8 +48,8 @@ class _WordListScreenState extends State<WordListScreen> {
     super.initState();
     _pageController = PageController();
     _loadWords();
-    _loadBannerAd();
-    _loadInterstitialAd();
+    _loadUnlockStatus();
+    AdService.instance.loadRewardedAd();
     _loadFontSize();
   }
 
@@ -78,12 +76,74 @@ class _WordListScreenState extends State<WordListScreen> {
     }
   }
 
-  Future<void> _loadInterstitialAd() async {
+  Future<void> _loadUnlockStatus() async {
+    await AdService.instance.loadUnlockStatus();
+    if (mounted) setState(() {});
+  }
+
+  // 잠긴 단어인지 확인 (짝수 인덱스 = 2, 4, 6...)
+  bool _isWordLocked(int index) {
+    // 홀수 단어는 무료, 짝수 단어(2, 4, 6...)는 잠김
+    if (index % 2 == 0) return false; // 0, 2, 4... -> 1번, 3번, 5번 단어 (무료)
+    return !AdService.instance.isUnlocked; // 1, 3, 5... -> 2번, 4번, 6번 단어 (잠김)
+  }
+
+  // 광고 시청 다이얼로그 표시
+  void _showUnlockDialog() {
+    final l10n = AppLocalizations.of(context)!;
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Row(
+          children: [
+            const Icon(Icons.lock, color: Colors.orange),
+            const SizedBox(width: 8),
+            Expanded(child: Text(l10n.lockedContent)),
+          ],
+        ),
+        content: Text(l10n.watchAdToUnlock),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: Text(l10n.cancel),
+          ),
+          ElevatedButton.icon(
+            onPressed: () {
+              Navigator.pop(context);
+              _watchAdToUnlock();
+            },
+            icon: const Icon(Icons.play_circle_outline),
+            label: Text(l10n.watchAd),
+          ),
+        ],
+      ),
+    );
+  }
+
+  // 광고 시청하여 잠금 해제
+  Future<void> _watchAdToUnlock() async {
+    final l10n = AppLocalizations.of(context)!;
     final adService = AdService.instance;
-    await adService.initialize();
-    if (!adService.adsRemoved) {
-      await adService.loadInterstitialAd();
+
+    if (!adService.isAdReady) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(l10n.adNotReady)),
+      );
+      adService.loadRewardedAd();
+      return;
     }
+
+    await adService.showRewardedAd(
+      onRewarded: () async {
+        await adService.unlockUntilMidnight();
+        if (mounted) {
+          setState(() {});
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text(l10n.unlockedUntilMidnight)),
+          );
+        }
+      },
+    );
   }
 
   Future<void> _loadFontSize() async {
@@ -91,23 +151,6 @@ class _WordListScreenState extends State<WordListScreen> {
     setState(() {
       _wordFontSize = prefs.getDouble('wordFontSize') ?? 1.0;
     });
-  }
-
-  Future<void> _loadBannerAd() async {
-    final adService = AdService.instance;
-    await adService.initialize();
-
-    if (!adService.adsRemoved) {
-      await adService.loadBannerAd(
-        onLoaded: () {
-          if (mounted) {
-            setState(() {
-              _isBannerAdLoaded = true;
-            });
-          }
-        },
-      );
-    }
   }
 
   Future<void> _loadWords() async {
@@ -217,12 +260,6 @@ class _WordListScreenState extends State<WordListScreen> {
   }
 
   Future<bool> _handleBackPress() async {
-    if (widget.isFlashcardMode) {
-      final adService = AdService.instance;
-      if (!adService.adsRemoved && adService.isInterstitialAdLoaded) {
-        await adService.showInterstitialAd();
-      }
-    }
     return true;
   }
 
@@ -233,7 +270,6 @@ class _WordListScreenState extends State<WordListScreen> {
     }
     _pageController.dispose();
     _listScrollController.dispose();
-    AdService.instance.disposeBannerAd();
     if (widget.isFlashcardMode) {
       _savePosition(_currentFlashcardIndex);
     } else {
@@ -328,39 +364,75 @@ class _WordListScreenState extends State<WordListScreen> {
             ),
         ],
       ),
-      body:
-          _isLoading
-              ? const Center(child: CircularProgressIndicator())
-              : _words.isEmpty
-              ? Center(child: Text(l10n.cannotLoadWords))
-              : Column(
-                children: [
-                  Expanded(
-                    child:
-                        widget.isFlashcardMode
-                            ? _buildFlashcardView()
-                            : _buildListView(),
-                  ),
-                  _buildBannerAd(),
-                ],
+      body: Column(
+        children: [
+          // 잠금 해제 안내 배너 (잠긴 상태일 때만 표시)
+          if (!AdService.instance.isUnlocked)
+            Container(
+              width: double.infinity,
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  colors: [
+                    Colors.orange.shade400,
+                    Colors.deepOrange.shade400,
+                  ],
+                ),
               ),
-    );
-  }
-
-  Widget _buildBannerAd() {
-    final adService = AdService.instance;
-
-    if (adService.adsRemoved ||
-        !_isBannerAdLoaded ||
-        adService.bannerAd == null) {
-      return const SizedBox.shrink();
-    }
-
-    return Container(
-      width: adService.bannerAd!.size.width.toDouble(),
-      height: adService.bannerAd!.size.height.toDouble(),
-      alignment: Alignment.center,
-      child: AdWidget(ad: adService.bannerAd!),
+              child: InkWell(
+                onTap: _showUnlockDialog,
+                child: Row(
+                  children: [
+                    const Icon(Icons.lock_open, color: Colors.white, size: 20),
+                    const SizedBox(width: 12),
+                    Expanded(
+                      child: Text(
+                        l10n.watchAdToUnlock,
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ),
+                    Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Icon(Icons.play_circle_filled, 
+                            color: Colors.deepOrange.shade400, size: 16),
+                          const SizedBox(width: 4),
+                          Text(
+                            l10n.watchAd,
+                            style: TextStyle(
+                              color: Colors.deepOrange.shade400,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 12,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          Expanded(
+            child:
+                _isLoading
+                    ? const Center(child: CircularProgressIndicator())
+                    : _words.isEmpty
+                    ? Center(child: Text(l10n.cannotLoadWords))
+                    : widget.isFlashcardMode
+                        ? _buildFlashcardView()
+                        : _buildListView(),
+          ),
+        ],
+      ),
     );
   }
 
@@ -379,17 +451,28 @@ class _WordListScreenState extends State<WordListScreen> {
         itemCount: _words.length,
         itemBuilder: (context, index) {
           final word = _words[index];
-          _loadTranslationForWord(word);
+          final isLocked = _isWordLocked(index);
+
+          if (!isLocked) {
+            _loadTranslationForWord(word);
+          }
 
           final definition =
-              _showNativeLanguage && _translatedDefinitions.containsKey(word.id)
-                  ? _translatedDefinitions[word.id]!
-                  : word.definition;
+              isLocked
+                  ? '🔒 ••••••••••••••'
+                  : (_showNativeLanguage && _translatedDefinitions.containsKey(word.id)
+                      ? _translatedDefinitions[word.id]!
+                      : word.definition);
 
           return Card(
             margin: const EdgeInsets.only(bottom: 12),
             child: ListTile(
               onTap: () async {
+                // 잠긴 단어면 광고 다이얼로그 표시
+                if (isLocked) {
+                  _showUnlockDialog();
+                  return;
+                }
                 final result = await Navigator.push<int>(
                   context,
                   MaterialPageRoute(
@@ -412,14 +495,28 @@ class _WordListScreenState extends State<WordListScreen> {
                   }
                 }
               },
-              title: Text(
-                word.getDisplayWord(
-                  displayMode: DisplayService.instance.displayMode,
-                ),
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 16 * _wordFontSize,
-                ),
+              title: Row(
+                children: [
+                  if (isLocked)
+                    const Padding(
+                      padding: EdgeInsets.only(right: 8),
+                      child: Icon(Icons.lock, size: 16, color: Colors.orange),
+                    ),
+                  Expanded(
+                    child: Text(
+                      isLocked
+                          ? '${word.word.substring(0, 1)}••••'
+                          : word.getDisplayWord(
+                              displayMode: DisplayService.instance.displayMode,
+                            ),
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16 * _wordFontSize,
+                        color: isLocked ? Colors.grey : null,
+                      ),
+                    ),
+                  ),
+                ],
               ),
               subtitle: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
