@@ -1,194 +1,131 @@
-import 'dart:io';
-import 'package:flutter/foundation.dart';
+import 'dart:io' show Platform;
+import 'package:flutter/foundation.dart' show kIsWeb, kDebugMode;
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AdService {
   static final AdService _instance = AdService._internal();
+  factory AdService() => _instance;
   static AdService get instance => _instance;
   AdService._internal();
 
-  bool _isInitialized = false;
-  bool _adsRemoved = false;
-  BannerAd? _bannerAd;
-  bool _isBannerAdLoaded = false;
-  InterstitialAd? _interstitialAd;
-  bool _isInterstitialAdLoaded = false;
+  RewardedAd? _rewardedAd;
+  bool _isLoading = false;
 
-  // Onoma Step ���고 ID
-  // Android
-  static const String _androidBannerId =
-      'ca-app-pub-5837885590326347/1316213339';
-  static const String _androidInterstitialId =
-      'ca-app-pub-5837885590326347/8485075154';
-  // iOS
-  static const String _iosBannerId = 'ca-app-pub-5837885590326347/7171993485';
-  static const String _iosInterstitialId =
-      'ca-app-pub-5837885590326347/5858911811';
+  // 단어 잠금 해제 상태
+  static const String _unlockKey = 'words_unlocked_until';
+  DateTime? _unlockedUntil;
 
-  String get bannerAdUnitId {
-    if (Platform.isAndroid) {
-      return _androidBannerId;
-    } else if (Platform.isIOS) {
-      return _iosBannerId;
-    }
-    return '';
+  // 테스트 광고 ID (개발용)
+  static const String _testRewardedAdUnitIdAndroid =
+      'ca-app-pub-3940256099942544/5224354917';
+  static const String _testRewardedAdUnitIdIOS =
+      'ca-app-pub-3940256099942544/1712485313';
+
+  // Onoma Step 보상형 광고 ID (프로덕션)
+  static const String _prodRewardedAdUnitIdAndroid =
+      'ca-app-pub-5837885590326347/8544020568';
+  static const String _prodRewardedAdUnitIdIOS =
+      'ca-app-pub-5837885590326347/9518190889';
+
+  // 현재 환경에 맞는 광고 ID 반환
+  static String get rewardedAdUnitIdAndroid =>
+      kDebugMode ? _testRewardedAdUnitIdAndroid : _prodRewardedAdUnitIdAndroid;
+  static String get rewardedAdUnitIdIOS =>
+      kDebugMode ? _testRewardedAdUnitIdIOS : _prodRewardedAdUnitIdIOS;
+
+  bool get isAdReady => _rewardedAd != null;
+
+  // 단어 잠금 해제 여부 확인
+  bool get isUnlocked {
+    if (_unlockedUntil == null) return false;
+    return DateTime.now().isBefore(_unlockedUntil!);
   }
 
-  String get interstitialAdUnitId {
-    if (Platform.isAndroid) {
-      return _androidInterstitialId;
-    } else if (Platform.isIOS) {
-      return _iosInterstitialId;
-    }
-    return '';
-  }
-
-  bool get isInitialized => _isInitialized;
-  bool get adsRemoved => _adsRemoved;
-  bool get isBannerAdLoaded => _isBannerAdLoaded;
-  bool get isInterstitialAdLoaded => _isInterstitialAdLoaded;
-  BannerAd? get bannerAd => _bannerAd;
-
-  Future<void> initialize() async {
-    if (_isInitialized) return;
-
-    // 광고 ?�?구매 ?? ???
+  // 잠금 해제 상태 로드
+  Future<void> loadUnlockStatus() async {
     final prefs = await SharedPreferences.getInstance();
-    _adsRemoved = prefs.getBool('ads_removed') ?? false;
-
-    if (_adsRemoved) {
-      _isInitialized = true;
-      return;
+    final timestamp = prefs.getInt(_unlockKey);
+    if (timestamp != null) {
+      _unlockedUntil = DateTime.fromMillisecondsSinceEpoch(timestamp);
     }
-
-    // ?????????????광고 비활???
-    if (kIsWeb || (!Platform.isAndroid && !Platform.isIOS)) {
-      _isInitialized = true;
-      return;
-    }
-
-    // JLPT Step N5?�N3 AdMob App ID
-    final appId = Platform.isAndroid 
-        ? 'ca-app-pub-5837885590326347~3740014937'  // Android
-        : 'ca-app-pub-5837885590326347~9956464146'; // iOS
-    
-    await MobileAds.instance.initialize();
-    _isInitialized = true;
   }
 
-  Future<void> loadBannerAd({Function()? onLoaded}) async {
-    debugPrint('loadBannerAd called');
-    debugPrint('  adsRemoved: $_adsRemoved');
+  // 자정까지 잠금 해제
+  Future<void> unlockUntilMidnight() async {
+    final now = DateTime.now();
+    final midnight = DateTime(now.year, now.month, now.day + 1);
+    _unlockedUntil = midnight;
 
-    if (_adsRemoved) {
-      debugPrint('  Ads removed, skipping banner load');
-      return;
-    }
-    if (kIsWeb || (!Platform.isAndroid && !Platform.isIOS)) {
-      debugPrint('  Not mobile platform, skipping');
-      return;
-    }
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setInt(_unlockKey, midnight.millisecondsSinceEpoch);
+  }
 
-    _bannerAd?.dispose();
-    _isBannerAdLoaded = false;
+  void loadRewardedAd() {
+    if (kIsWeb) return;
+    if (_isLoading || _rewardedAd != null) return;
+    _isLoading = true;
 
-    debugPrint('  Loading banner with adUnitId: $bannerAdUnitId');
+    _loadAd();
+  }
 
-    _bannerAd = BannerAd(
-      adUnitId: bannerAdUnitId,
-      size: AdSize.banner,
+  void _loadAd() {
+    final String adUnitId =
+        Platform.isIOS ? rewardedAdUnitIdIOS : rewardedAdUnitIdAndroid;
+
+    RewardedAd.load(
+      adUnitId: adUnitId,
       request: const AdRequest(),
-      listener: BannerAdListener(
+      rewardedAdLoadCallback: RewardedAdLoadCallback(
         onAdLoaded: (ad) {
-          debugPrint('  BannerAd loaded successfully!');
-          _isBannerAdLoaded = true;
-          onLoaded?.call();
-        },
-        onAdFailedToLoad: (ad, error) {
-          debugPrint(
-            '  BannerAd failed to load: ${error.code} - ${error.message}',
-          );
-          ad.dispose();
-          _isBannerAdLoaded = false;
-        },
-      ),
-    );
-
-    await _bannerAd!.load();
-  }
-
-  void disposeBannerAd() {
-    _bannerAd?.dispose();
-    _bannerAd = null;
-    _isBannerAdLoaded = false;
-  }
-
-  // ?�?광고 로드
-  Future<void> loadInterstitialAd() async {
-    if (_adsRemoved) return;
-    if (kIsWeb || (!Platform.isAndroid && !Platform.isIOS)) return;
-
-    await InterstitialAd.load(
-      adUnitId: interstitialAdUnitId,
-      request: const AdRequest(),
-      adLoadCallback: InterstitialAdLoadCallback(
-        onAdLoaded: (ad) {
-          _interstitialAd = ad;
-          _isInterstitialAdLoaded = true;
-
-          _interstitialAd!
-              .fullScreenContentCallback = FullScreenContentCallback(
-            onAdDismissedFullScreenContent: (ad) {
-              ad.dispose();
-              _isInterstitialAdLoaded = false;
-              loadInterstitialAd(); // ???광고 미리 로드
-            },
-            onAdFailedToShowFullScreenContent: (ad, error) {
-              ad.dispose();
-              _isInterstitialAdLoaded = false;
-              loadInterstitialAd();
-            },
-          );
+          _rewardedAd = ad;
+          _isLoading = false;
         },
         onAdFailedToLoad: (error) {
-          debugPrint('InterstitialAd failed to load: $error');
-          _isInterstitialAdLoaded = false;
+          print('Rewarded ad failed to load: ${error.message}');
+          _isLoading = false;
         },
       ),
     );
   }
 
-  // ?�?광고 ???
-  Future<void> showInterstitialAd() async {
-    if (_adsRemoved) return;
-    if (!_isInterstitialAdLoaded || _interstitialAd == null) return;
-
-    await _interstitialAd!.show();
-  }
-
-  void disposeInterstitialAd() {
-    _interstitialAd?.dispose();
-    _interstitialAd = null;
-    _isInterstitialAdLoaded = false;
-  }
-
-  // 광고 ?�?구매 ???�?
-  Future<void> removeAds() async {
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setBool('ads_removed', true);
-    _adsRemoved = true;
-    disposeBannerAd();
-    disposeInterstitialAd();
-  }
-
-  // 광고 ?�?복원 (IAP 복원??
-  Future<void> restoreAdsRemoved() async {
-    final prefs = await SharedPreferences.getInstance();
-    _adsRemoved = prefs.getBool('ads_removed') ?? false;
-    if (_adsRemoved) {
-      disposeBannerAd();
-      disposeInterstitialAd();
+  Future<bool> showRewardedAd({
+    required Function onRewarded,
+  }) async {
+    if (kIsWeb) {
+      onRewarded();
+      return true;
     }
+
+    if (_rewardedAd == null) {
+      loadRewardedAd();
+      return false;
+    }
+
+    _rewardedAd!.fullScreenContentCallback = FullScreenContentCallback(
+      onAdDismissedFullScreenContent: (ad) {
+        ad.dispose();
+        _rewardedAd = null;
+        loadRewardedAd();
+      },
+      onAdFailedToShowFullScreenContent: (ad, error) {
+        ad.dispose();
+        _rewardedAd = null;
+        loadRewardedAd();
+      },
+    );
+
+    await _rewardedAd!.show(
+      onUserEarnedReward: (ad, reward) {
+        onRewarded();
+      },
+    );
+
+    return true;
+  }
+
+  void dispose() {
+    _rewardedAd?.dispose();
+    _rewardedAd = null;
   }
 }

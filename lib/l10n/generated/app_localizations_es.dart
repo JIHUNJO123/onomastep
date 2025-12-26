@@ -111,7 +111,8 @@ class AppLocalizationsEs extends AppLocalizations {
   String get disclaimer => 'Aviso legal';
 
   @override
-  String get disclaimerText => 'Esta app usa datos de JMdict (CC-BY-SA 4.0) y Tatoeba (CC-BY 2.0).';
+  String get disclaimerText =>
+      'Esta app usa datos de JMdict (CC-BY-SA 4.0) y Tatoeba (CC-BY 2.0).';
 
   @override
   String get privacyPolicy => 'Política de privacidad';
@@ -197,7 +198,8 @@ class AppLocalizationsEs extends AppLocalizations {
   String get keepPracticing => 'Sigue practicando!';
 
   @override
-  String get privacyPolicyContent => 'Esta app no recopila información personal.';
+  String get privacyPolicyContent =>
+      'Esta app no recopila información personal.';
 
   @override
   String get restorePurchaseDesc => 'Restaura compras anteriores.';
@@ -366,4 +368,20 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get cancel => 'Cancelar';
+
+  @override
+  String get lockedContent => 'Locked Content';
+
+  @override
+  String get watchAdToUnlock =>
+      'Watch a short video to unlock all words until midnight!';
+
+  @override
+  String get watchAd => 'Watch Ad';
+
+  @override
+  String get adNotReady => 'Ad is not ready yet. Please try again.';
+
+  @override
+  String get unlockedUntilMidnight => 'All words unlocked until midnight!';
 }

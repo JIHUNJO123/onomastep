@@ -111,7 +111,8 @@ class AppLocalizationsKo extends AppLocalizations {
   String get disclaimer => '면책조항';
 
   @override
-  String get disclaimerText => '이 앱은 JMdict (CC-BY-SA 4.0)와 Tatoeba (CC-BY 2.0) 데이터를 사용합니다.';
+  String get disclaimerText =>
+      '이 앱은 JMdict (CC-BY-SA 4.0)와 Tatoeba (CC-BY 2.0) 데이터를 사용합니다.';
 
   @override
   String get privacyPolicy => '개인정보 처리방침';
@@ -366,4 +367,19 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get cancel => '취소';
+
+  @override
+  String get lockedContent => '잠긴 콘텐츠';
+
+  @override
+  String get watchAdToUnlock => '짧은 영상을 시청하면 자정까지 모든 단어가 잠금 해제됩니다!';
+
+  @override
+  String get watchAd => '광고 보기';
+
+  @override
+  String get adNotReady => '광고가 준비되지 않았습니다. 다시 시도해 주세요.';
+
+  @override
+  String get unlockedUntilMidnight => '자정까지 모든 단어가 잠금 해제되었습니다!';
 }
