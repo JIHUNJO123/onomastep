@@ -27,8 +27,8 @@
       - name: Flutter build ipa
         script: |
           flutter build ipa --release \
-            --build-name=1.0.0 \
-            --build-number=1 \
+            --build-name=1.0.4 \
+            --build-number=7 \
             --export-options-plist=/Users/builder/export_options.plist
     artifacts:
       - build/ios/ipa/*.ipa
@@ -63,8 +63,8 @@
       - name: Build AAB
         script: |
           flutter build appbundle --release \
-            --build-name=1.0.0 \
-            --build-number=1
+            --build-name=1.0.4 \
+            --build-number=7
     artifacts:
       - build/app/outputs/bundle/release/*.aab
     publishing:
