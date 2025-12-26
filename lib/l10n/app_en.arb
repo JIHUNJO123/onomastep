@@ -123,5 +123,10 @@
   "cat_WetDry": "Wet/Dry",
   "cat_Wind": "Wind",
   "cat_WindAirSounds": "Wind/Air",
-  "cancel": "Cancel"
+  "cancel": "Cancel",
+  "lockedContent": "Locked Content",
+  "watchAdToUnlock": "Watch a short video to unlock all words until midnight!",
+  "watchAd": "Watch Ad",
+  "adNotReady": "Ad is not ready yet. Please try again.",
+  "unlockedUntilMidnight": "All words unlocked until midnight!"
 }

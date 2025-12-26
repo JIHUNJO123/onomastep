@@ -1,4 +1,4 @@
-﻿{
+{
   "@@locale": "es",
   "appTitle": "Onoma Step",
   "todayWord": "Palabra del día",
@@ -47,7 +47,9 @@
   "levelWords": "{level}",
   "@levelWords": {
     "placeholders": {
-      "level": { "type": "String" }
+      "level": {
+        "type": "String"
+      }
     }
   },
   "alphabetical": "Alfabético",
@@ -123,5 +125,10 @@
   "cat_WetDry": "Mojado/Seco",
   "cat_Wind": "Viento",
   "cat_WindAirSounds": "Sonidos de viento",
-  "cancel": "Cancelar"
+  "cancel": "Cancelar",
+  "lockedContent": "Contenido bloqueado",
+  "watchAdToUnlock": "¡Mira un video corto para desbloquear todas las palabras hasta la medianoche!",
+  "watchAd": "Ver anuncio",
+  "adNotReady": "El anuncio aún no está listo. Por favor, inténtalo de nuevo.",
+  "unlockedUntilMidnight": "¡Todas las palabras desbloqueadas hasta la medianoche!"
 }
