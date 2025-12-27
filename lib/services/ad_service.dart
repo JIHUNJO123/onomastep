@@ -89,9 +89,7 @@ class AdService {
     );
   }
 
-  Future<bool> showRewardedAd({
-    required Function onRewarded,
-  }) async {
+  Future<bool> showRewardedAd({required Function onRewarded}) async {
     if (kIsWeb) {
       onRewarded();
       return true;
